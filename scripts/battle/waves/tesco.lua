@@ -18,11 +18,6 @@ function TescoAttack:onStart()
     -- local soul_loc, soul_loc_2 = Game.battle:getSoulLocation();
     -- Game.battle:swapSoul(YellowSoul(320, 172, 0))
     -- Kristal.Console:log(string.format("x:%d, y:%d", soul_loc, soul_loc_2));
-    if Game.battle.soul == nil then
-        Kristal.Console:log("Soul is NOT nil")
-    else 
-        Kristal.Console:log("Soul REALLY is nil")
-    end
     -- Game.battle.swapSoul()
 
     local x = SCREEN_WIDTH / 2

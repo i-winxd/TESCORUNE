@@ -36,7 +36,6 @@ function YellowSoul:init(x, y, angle)
     self.hold_timer = 0
     self.charge_sfx = nil
     -- Kristal.Console.log("This has been init");
-    Kristal.Console:log("This has been init");
 
 end
 

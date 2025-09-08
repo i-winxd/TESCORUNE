@@ -1,2 +1,5 @@
 .vscode/
 *.tiled-session
+.mypy_cache/
+run_engine.py
+run_engine.bat
