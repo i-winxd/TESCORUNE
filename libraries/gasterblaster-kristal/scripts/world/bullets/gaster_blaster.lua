@@ -1,5 +1,15 @@
 local GasterBlaster, super = Class(WorldBullet)
 
+
+---@param x number blaster spawns here initially
+---@param y number blaster spawns here initially
+---@param rot number blaster faces this direction initially (default -> +=cw), degrees
+---@param target_x number blaster goes here eventually
+---@param target_y number blaster goes here eventually
+---@param target_rot number blaster faces this direction eventually
+---@param wait_time number time spent before blasting
+---@param blast_time number time spent during blasting
+---@param play_sound boolean play the blast sound
 function GasterBlaster:init(x, y, rot, target_x, target_y, target_rot, wait_time, blast_time, play_sound)
     self.sprite = Sprite("battle/bullets/gaster_blaster")
 

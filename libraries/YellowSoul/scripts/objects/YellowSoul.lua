@@ -107,6 +107,13 @@ function YellowSoul:update()
     end
 end
 
+function YellowSoul:onRemove()
+    if self.charge_sfx then
+        self.charge_sfx:stop()
+        self.charge_sfx = nil
+    end
+end
+
 function YellowSoul:draw()
     local r,g,b,a = self:getDrawColor()
     local heart_texture = Assets.getTexture(self.sprite.texture_path)
