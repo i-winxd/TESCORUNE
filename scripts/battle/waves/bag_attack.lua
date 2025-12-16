@@ -50,6 +50,8 @@ function BagAttack:onStart()
             end
         end)
     end
+
+    
     -- 0.000 to 0.020 is about half
     local arena = Game.battle.arena
     local times_called = 1

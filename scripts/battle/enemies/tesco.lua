@@ -9,10 +9,10 @@ function Tesco:init()
     self:setActor("tesco")
 
     -- Enemy health
-    self.max_health = 600
-    self.health = 600
+    self.max_health = 2600
+    self.health = 2600
     -- Enemy attack (determines bullet damage)
-    self.attack = 3
+    self.attack = 7
     -- Enemy defense (usually 0)
     self.defense = 0
     -- Enemy reward
@@ -24,7 +24,11 @@ function Tesco:init()
 
     -- List of possible wave ids, randomly picked each turn
     self.waves = {
-        "tesco"
+        "tesco",
+        "bag_attack",
+        "karts",
+        "top_kart",
+        -- "basic"
     }
 
     -- Dialogue randomly displayed in the enemy's speech bubble
@@ -56,7 +60,7 @@ end
 function Tesco:onAct(battler, name)
     if name == "Remove item" then
         -- Give the enemy 100% mercy
-        self:addMercy(20)
+        self:addMercy(5)
         -- Change this enemy's dialogue for 1 turn
         -- self.dialogue_override = "... ^^"
         -- Act text (since it's a list, multiple textboxes)

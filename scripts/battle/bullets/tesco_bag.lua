@@ -39,7 +39,7 @@ function TescoBag:init(x0, y0, x1, y1, x2, y2, d1, d2, d3)
     -- Last argument = sprite path
     super.init(self, x0, y0, "bullets/tesco_icons/bag_of_area")
     self.shot_health = 1
-    self.shot_tp = 1
+    self.shot_tp = 0.2
     self.remove_offscreen = false
     self.timer = Timer()
     self:addChild(self.timer)
@@ -74,7 +74,11 @@ function TescoBag:onAdd()
         --     wait(self.d2)
         -- end
         wait(math.max(self.d2, 0))
-        self.timer:tween(out_time, self, {x = self.x2, y = self.y2}, "in-quint")
+        self.timer:tween(out_time, self, {x = self.x2, y = self.y2}, "in-quint",
+        function ()
+            self:destroy()
+        end
+        )
     end
     )
 end

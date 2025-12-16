@@ -34,7 +34,7 @@ function TopKart:onStart()
         end)
     end)
     local blasts = (1 + Utils.random(0, 20, 5))
-    local random_values = {0.06833506337494677, 0.6018319606252894, 0.6993382027676447, 0.43543916353742895, 0.6410912380006216, 0.27046775288910074, 0.20343955259325885, 0.8544953868679634, 0.3986672759155404, 0.8317283169857723, 0.5993500327734311, 0.23006427258260642, 0.7533953967428109, 0.2428209297084148, 0.9536111180887491, 0.2190210280951389, 0.5101117572730457, 0.383274622656924, 0.8716209991967329, 0.013512750575775612}
+    local random_values = {0.06833506337494677, 0.6018319606252894, 0.6993382027676447, 0.43543916353742895, 0.6410912380006216, 0.27046775288910074, 0.20343955259325885, 0.8544953868679634, 0.3986672759155404, 0.8317283169857723, 0.5993500327734311, 0.23006427258260642, 0.7533953967428109, 0.2428209297084148, 0.9536111180887491, 0.2190210280951389, 0.5101117572730457, 0.383274622656924, 0.8716209991967329, 0.513512750575775612}
     self.timer:every(kart_spawn_interval * 0.8, function() 
         -- local aspect_ratio = 1
         -- local random_angle = Utils.random(0, math.pi*2)
@@ -55,6 +55,54 @@ function TopKart:onStart()
         18,4,true)
         blaster.scale_x = 1.6
     end)
+
+
+
+
+        -- bag_wave_spawn(w_oob, htp(0.5), arena_x, arena_y, 10, 5)
+    ---@param x0 number
+    ---@param y0 number
+    ---@param x1 number
+    ---@param y1 number
+    ---@param count number
+    ---@param gap number
+    local function spawn_bag_wave(x0, y0, x1, y1, count, gap, patience)
+        self.timer:script(function (wait)
+            local n = math.floor(count) - 1
+            for i = 0, n do
+                wait(0.15)
+                self:spawnBag(x0 + i * gap, y0, x1 + i * gap, y1, x0, y0, 2, patience, 1)
+            end
+        end)
+    end
+
+    local w_oob = SCREEN_WIDTH * 1.15
+    -- 0.000 to 0.020 is about half
+    local arena = Game.battle.arena
+    local times_called = 1
+    self.timer:everyInstant(4, function()
+        local pusher = 0
+        local actual_patience = 1 * (times_called - 1)
+        if times_called % 2 == 0 then
+            pusher = Utils.random(0.0, 0.5)    
+        else
+            pusher = Utils.random(-0.5, -0.0)
+        end
+        spawn_bag_wave(w_oob, 
+        arena_y + arena.height * (pusher * 0.5), arena_x + arena.width * 1.4,
+        arena_y + arena.height * pusher, 5, 10, actual_patience)
+
+        times_called = times_called + 1
+    end)
+
+
+end
+
+
+
+function TopKart:spawnBag(x0, y0, x1, y1, x2, y2, d1, d2, d3) 
+    local bagBullet = self:spawnBullet("tesco_bag", x0, y0, x1, y1, x2, y2, d1, d2, d3)
+    return bagBullet
 end
 
 ---@param x number

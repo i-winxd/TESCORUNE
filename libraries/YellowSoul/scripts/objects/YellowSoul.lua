@@ -36,10 +36,13 @@ function YellowSoul:init(x, y, angle)
     self.hold_timer = 0
     self.charge_sfx = nil
     -- Kristal.Console.log("This has been init");
-
+    self.timer_thing = Timer()
+    self:addChild(self.timer_thing)
 end
 
 function YellowSoul:update()
+    -- print("Yelow soul update called")
+    local last_update_called = love.timer.getTime()
     super.update(self)
     if self.transitioning then
         if self.charge_sfx then
@@ -77,8 +80,8 @@ function YellowSoul:update()
             self.hold_timer = self.hold_timer + DTMULT*self:getChargeSpeed()
 
             if self.hold_timer >= 20 and not self.charge_sfx then -- start charging sfx
-                self.charge_sfx = Assets.getSound("chargeshot_charge")
-                self.charge_sfx:setLooping(true)
+                self.charge_sfx = Assets.getSound("very_long_charge")
+                self.charge_sfx:setLooping(false)
                 self.charge_sfx:setPitch(0.1)
                 self.charge_sfx:setVolume(0)
                 local timer = 0
@@ -90,6 +93,7 @@ function YellowSoul:update()
                 end, function()
                     if self.charge_sfx then
                         self.charge_sfx:setVolume(0.3)
+                        
                     end    
                 end)
                 self.charge_sfx:play()
@@ -107,12 +111,12 @@ function YellowSoul:update()
     end
 end
 
-function YellowSoul:onRemove()
-    if self.charge_sfx then
-        self.charge_sfx:stop()
-        self.charge_sfx = nil
-    end
-end
+-- function YellowSoul:onRemove()
+--     if self.charge_sfx then
+--         self.charge_sfx:stop()
+--         self.charge_sfx = nil
+--     end
+-- end
 
 function YellowSoul:draw()
     local r,g,b,a = self:getDrawColor()
@@ -151,12 +155,16 @@ function YellowSoul:draw()
 end
 
 function YellowSoul:onRemove(parent)
+    -- print("Yellow sould removed")
     if self.charge_sfx then
         self.charge_sfx:stop()
         self.charge_sfx = nil
     end
     super.onRemove(self, parent)
-    
+end
+
+function YellowSoul:onRemoveFromStage(stage)
+    self:onRemove(stage)
 end
 
 function YellowSoul:getChargeSpeed()
