@@ -24,7 +24,7 @@ function T01MovingSolid:init()
     self.arena_width = SCREEN_WIDTH * 0.70
     self.arena_x = SCREEN_WIDTH * 0.5
     self.arena_y = SCREEN_HEIGHT * 0.7 * 0.5
-    
+    self.fence_solids = {}
     -- Game.battle.arena:setSize(600, 600)
 
     local fpw = self:fencePointToWorld({0.5, 0.5}, 6, 4)
@@ -38,7 +38,6 @@ function T01MovingSolid:onEnd(death)
         Game.battle:swapSoul(self._original_soul)
         self._original_soul = nil
     end
-    
 end
 
 function T01MovingSolid:onStart()
@@ -57,7 +56,8 @@ function T01MovingSolid:onStart()
         {{4,2},{4,3}},
         {{4,2},{6,2}}
     }
-    self:spawnWalls(fences, 6, 4)
+    local spawned_solids = self:spawnWalls(fences, 6, 4)
+    self.fence_solids = spawned_solids
 end
 
 --- NOTE: ARENA MUST BE SET or I'm going to scream
@@ -99,7 +99,7 @@ function T01MovingSolid:spawnWalls(fences, grid_width, grid_height)
     local arena = Game.battle.arena
 
     local thickness = 5
-
+    local collected_solids = {}
     for _, fence in ipairs(fences) do
         local p1 = fence[1]
         local p2 = fence[2]
@@ -119,8 +119,8 @@ function T01MovingSolid:spawnWalls(fences, grid_width, grid_height)
             local y = world_start[2]
             local w = world_end[1] - world_start[1] + thickness
 
-            self:spawn_solid(x, y, w, thickness)
-
+            local sol_col = self:spawn_solid(x, y, w, thickness)
+            table.insert(collected_solids, sol_col)
         -- Vertical fence
         elseif x1 == x2 then
             local start_y = math.min(y1, y2)
@@ -133,12 +133,13 @@ function T01MovingSolid:spawnWalls(fences, grid_width, grid_height)
             local y = world_start[2]
             local h = world_end[2] - world_start[2] + thickness
 
-            self:spawn_solid(x, y, thickness, h)
-
+            local sol_col = self:spawn_solid(x, y, thickness, h)
+            table.insert(collected_solids, sol_col)
         -- No diag case
         else
         end
     end
+    return collected_solids
 end
 
 

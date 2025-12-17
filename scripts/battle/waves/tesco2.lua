@@ -1,26 +1,28 @@
-local TescoAttack, super = Class(Wave)
+local TescoAttack2, super = Class(Wave)
 
-function TescoAttack:init()
+function TescoAttack2:init()
     super.init(self)
 
     -- Initialize timer
     -- self.siner = 0
     
     -- how long the battle lasts in seconds
-    self.time = 10
+    self.time = 12
 end
 
-function TescoAttack:onEnd(death)
+function TescoAttack2:onEnd(death)
     if not death and self._original_soul then
         Game.battle:swapSoul(self._original_soul)
         self._original_soul = nil
     end
 end
 
-function TescoAttack:onStart()
+function TescoAttack2:onStart()
+
     self._original_soul = Game.battle.soul
     local standard_soul = Soul()
     Game.battle:swapSoul(standard_soul)
+
     -- Get the arena object
     local arena = Game.battle.arena
     -- local soul_x_pos = 60
@@ -41,11 +43,11 @@ function TescoAttack:onStart()
     -- x, y, rot, target_x, target_y, target_rot, wait_time, blast_time, play_sound
     -- local bullet = self:spawnBullet("gaster_blaster", 0, 0, 180, x, y, 270, 0.5, 0.5, true)
     -- local bullet2 = self:spawnBullet("gaster_blaster", arena_x, arena_y, -180, 0.5)
-    local bullet = self:spawnBullet("tesco", arena_x + bullet_reach_factor * arena.width, arena_y,
+    local bullet = self:spawnBullet("tesco2", arena_x + bullet_reach_factor * arena.width, arena_y,
         self)
 end
 
-function TescoAttack:update()
+function TescoAttack2:update()
 
 
 
@@ -61,4 +63,4 @@ function TescoAttack:update()
     super.update(self)
 end
 
-return TescoAttack
+return TescoAttack2

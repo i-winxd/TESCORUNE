@@ -4,18 +4,23 @@ local was15 = 10
 local was35 = 35
 
 
+local function clamper(val, min, max)
+    return math.max(min, math.min(max, val))
+end
+
+
 local function clampMap(val, min_a, max_a, min_b, max_b, mode)
     if min_a > max_a then
         -- Swap min and max
         min_a, max_a = max_a, min_a
         min_b, max_b = max_b, min_b
     end
-    val = Utils.clamp(val, min_a, max_a)
+    val = clamper(val, min_a, max_a)
     local t = (val - min_a) / (max_a - min_a)
     if mode and mode ~= "linear" then
         return Utils.ease(min_b, max_b, t, mode)
     else
-        return Utils.lerp(min_b, max_b, t)
+        return clamper(min_b, max_b, t)
     end
 end
 

@@ -1,5 +1,31 @@
 local BagAttack, super = Class(Wave)
 
+--- Drop-in replacement to rander.
+--- Can't move files, must be compatible with the
+--- branch in september!
+local function rander(a, b, c)
+    local function roundToMultiple(value, to)
+        if to == 0 then
+            return 0
+        end
+
+        return math.floor((value + (to / 2)) / to) * to
+    end
+
+    if not a then
+        return love.math.random()
+    elseif not b then
+        return love.math.random() * a
+    else
+        local n = love.math.random() * (b - a) + a
+        if c then
+            n = roundToMultiple(n, c)
+        end
+        return n
+    end
+end
+
+
 function BagAttack:init()
     super.init(self)
     -- how long the battle lasts in seconds
@@ -59,9 +85,9 @@ function BagAttack:onStart()
         local pusher = 0
         local actual_patience = 0.15 * (times_called - 1)
         if times_called % 2 == 0 then
-            pusher = Utils.random(0.0, 0.5)    
+            pusher = rander(0.0, 0.5)    
         else
-            pusher = Utils.random(-0.5, -0.0)
+            pusher = rander(-0.5, -0.0)
         end
         spawn_bag_wave(w_oob, 
         arena_y + arena.height * (pusher * 0.5), arena_x + arena.width * 1,

@@ -1,5 +1,31 @@
 local TescoBullet, super = Class(Bullet)
 
+--- Drop-in replacement to rander.
+--- Can't move files, must be compatible with the
+--- branch in september!
+local function rander(a, b, c)
+    local function roundToMultiple(value, to)
+        if to == 0 then
+            return 0
+        end
+
+        return math.floor((value + (to / 2)) / to) * to
+    end
+
+    if not a then
+        return love.math.random()
+    elseif not b then
+        return love.math.random() * a
+    else
+        local n = love.math.random() * (b - a) + a
+        if c then
+            n = roundToMultiple(n, c)
+        end
+        return n
+    end
+end
+
+
 ---@param x number
 ---@param y number
 function TescoBullet:init(x, y, wave)
@@ -28,7 +54,14 @@ function TescoBullet:onAdd()
     self.timer:everyInstant(1.5, function()
         self.timer:script(function(wait)
             -- wait(0.01)
-            local selected_deg = cur_deg + (Utils.random(minimum_rotation, 360))
+            local coin_flip = rander(0, 1) > 0.5
+            local plus_minus
+            if coin_flip then
+                plus_minus = 1
+            else
+                plus_minus = -1
+            end
+            local selected_deg = cur_deg + (plus_minus * (rander(minimum_rotation, 360)))
             cur_deg = selected_deg
             local reach = bullet_reach_factor * math.sqrt((arena.width / 2) ^ 2 + (arena.height / 2) ^ 2)
             local angle_rad = math.rad(selected_deg)
@@ -40,7 +73,7 @@ function TescoBullet:onAdd()
             wait(0.25)
 
             local tesco_sounds = { "tesco/tesco_bagging", "tesco/tesco_item", "tesco/tesco_unexpected" };
-            local sound_choice = Utils.random(1, #tesco_sounds, 1)
+            local sound_choice = rander(1, #tesco_sounds, 1)
             Assets.playSound(tesco_sounds[sound_choice], 1)
 
             self.timer:tween(0.5, self, { x = final_x, y = final_y, rotation = angle_rad },
@@ -50,7 +83,7 @@ function TescoBullet:onAdd()
             for i = 1, 4 do
                 local me_x, me_y = self:getRelativePos(self.width / 2, self.height / 2)
                 -- Game.battle.soul.x
-                local rand_angle = math.rad(Utils.random(-70, 70))
+                local rand_angle = math.rad(rander(-35, 35))
                 local angle_diff = Utils.angle(me_x, me_y, Game.battle.soul.x, Game.battle.soul.y)
                 if self.wave ~= nil then
                     self.wave:spawnBullet("pound_symbol", me_x, me_y, angle_diff + rand_angle, 7)

@@ -1,5 +1,31 @@
 local TopKart, super = Class(Wave)
 
+--- Drop-in replacement to Utils.random.
+--- Can't move files, must be compatible with the
+--- branch in september!
+local function rander(a, b, c)
+    local function roundToMultiple(value, to)
+        if to == 0 then
+            return 0
+        end
+
+        return math.floor((value + (to / 2)) / to) * to
+    end
+
+    if not a then
+        return love.math.random()
+    elseif not b then
+        return love.math.random() * a
+    else
+        local n = love.math.random() * (b - a) + a
+        if c then
+            n = roundToMultiple(n, c)
+        end
+        return n
+    end
+end
+
+
 function TopKart:init()
     super.init(self)
     -- how long the battle lasts in seconds
@@ -33,11 +59,11 @@ function TopKart:onStart()
             self:spawnKartArray(arena.x + SCREEN_WIDTH/4, (arena.y - arena.height / 2), 3, 90, 5 * aspect_ratio)
         end)
     end)
-    local blasts = (1 + Utils.random(0, 20, 5))
+    local blasts = (1 + rander(0, 20, 5))
     local random_values = {0.06833506337494677, 0.6018319606252894, 0.6993382027676447, 0.43543916353742895, 0.6410912380006216, 0.27046775288910074, 0.20343955259325885, 0.8544953868679634, 0.3986672759155404, 0.8317283169857723, 0.5993500327734311, 0.23006427258260642, 0.7533953967428109, 0.2428209297084148, 0.9536111180887491, 0.2190210280951389, 0.5101117572730457, 0.383274622656924, 0.8716209991967329, 0.513512750575775612}
     self.timer:every(kart_spawn_interval * 0.8, function() 
         -- local aspect_ratio = 1
-        -- local random_angle = Utils.random(0, math.pi*2)
+        -- local random_angle = rander(0, math.pi*2)
         local random_angle = random_values[((blasts - 1)%(#random_values))+1] * math.pi*2
         blasts = blasts + 1
         local ax, ay = math.cos(random_angle) * aspect_ratio, math.sin(random_angle)
@@ -84,9 +110,9 @@ function TopKart:onStart()
         local pusher = 0
         local actual_patience = 1 * (times_called - 1)
         if times_called % 2 == 0 then
-            pusher = Utils.random(0.0, 0.5)    
+            pusher = rander(0.0, 0.5)    
         else
-            pusher = Utils.random(-0.5, -0.0)
+            pusher = rander(-0.5, -0.0)
         end
         spawn_bag_wave(w_oob, 
         arena_y + arena.height * (pusher * 0.5), arena_x + arena.width * 1.4,

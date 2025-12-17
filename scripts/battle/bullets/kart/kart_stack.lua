@@ -1,5 +1,31 @@
 local KartStack, super = Class(Bullet)
 
+--- Drop-in replacement to rander.
+--- Can't move files, must be compatible with the
+--- branch in september!
+local function rander(a, b, c)
+    local function roundToMultiple(value, to)
+        if to == 0 then
+            return 0
+        end
+
+        return math.floor((value + (to / 2)) / to) * to
+    end
+
+    if not a then
+        return love.math.random()
+    elseif not b then
+        return love.math.random() * a
+    else
+        local n = love.math.random() * (b - a) + a
+        if c then
+            n = roundToMultiple(n, c)
+        end
+        return n
+    end
+end
+
+
 --- Computes bezier y for given xInput using custom control points
 ---@param xInput number must be between 0 to 1
 ---@param x1 number
@@ -57,8 +83,8 @@ function KartStack:onAdd()
     local no_items = 8
 
     -- select a random value between 2 and 5
-    local rand = Utils.random(3, 6, 1)
-    local bomb_top = Utils.random(0, 1, 1) == 1
+    local rand = rander(3, 6, 1)
+    local bomb_top = rander(0, 1, 1) == 1
 
     for i = 1, no_items, 1 do
         local item_height_offset = (i - 1) * item_height
@@ -81,7 +107,7 @@ function KartStack:onAdd()
             if i == 1 then
                 texture = "bullets/tesco_icons/shopping_cart"
             else
-                texture = self.kart_textures[Utils.random(1, #self.kart_textures, 1)]
+                texture = self.kart_textures[rander(1, #self.kart_textures, 1)]
             end
             self:spawnBasicKart(0, 0 - item_height_offset, texture)
         end

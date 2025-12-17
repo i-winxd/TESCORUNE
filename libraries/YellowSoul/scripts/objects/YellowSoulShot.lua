@@ -17,13 +17,24 @@ function Shot:init(x, y, angle)
     self.hit_bullets = {}
 end
 
+
+local function filterer(tbl, filter)
+    local t = {}
+    for _, v in ipairs(tbl) do
+        if filter(v) then
+            table.insert(t, v)
+        end
+    end
+    return t
+end
+
 function Shot:update()
     super.update(self)
     if self.x > SCREEN_WIDTH + self.sprite.width then
         self:remove()
     end
 
-    local bullets = Utils.filter(Game.stage:getObjects(Bullet), function(v)
+    local bullets = filterer(Game.stage:getObjects(Bullet), function(v)
         if self.hit_bullets[v] then return false end
         return v.onYellowShot
     end)
