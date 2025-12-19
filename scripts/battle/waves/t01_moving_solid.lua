@@ -57,7 +57,8 @@ function T01MovingSolid:onStart()
         {{4,2},{6,2}}
     }
     local spawned_solids = self:spawnWalls(fences, 6, 4)
-    self.fence_solids = spawned_solids
+    self.fence_solids = spawned_solids -- TODO: make these black and white
+    -- in the your taking too long section
 end
 
 --- NOTE: ARENA MUST BE SET or I'm going to scream

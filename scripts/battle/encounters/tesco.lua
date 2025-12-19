@@ -7,7 +7,8 @@ function Tesco:init()
     self.text = "* An unexpected item appears in the bagging area!"
 
     -- Battle music ("battle" is rude buster)
-    self.music = "UNEXPECTEDITEM_02"
+    -- self.music = "UNEXPECTEDITEM_02"
+    self.music = ""
     -- Enables the purple grid battle background
     self.background = true
 

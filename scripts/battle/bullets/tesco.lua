@@ -51,7 +51,9 @@ function TescoBullet:onAdd()
     local bullet_reach_factor = 2
     local cur_deg = 0
     local minimum_rotation = 120
-    self.timer:everyInstant(1.5, function()
+    self.timer:script(function(wait)
+        wait(0.5)
+        self.timer:everyInstant(1.5, function()
         self.timer:script(function(wait)
             -- wait(0.01)
             local coin_flip = rander(0, 1) > 0.5
@@ -91,6 +93,7 @@ function TescoBullet:onAdd()
                 wait(0.05)
             end
 
+        end)
         end)
     end)
 end
