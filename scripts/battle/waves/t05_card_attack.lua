@@ -1,0 +1,41 @@
+local CURWAVE, super = Class(Wave)
+
+function CURWAVE:init()
+    super.init(self)
+
+    -- Initialize timer
+    -- self.siner = 0
+    
+    -- how long the battle lasts in seconds
+    self.arena_y = (SCREEN_HEIGHT*0.7*0.375)
+    self.arena_width = (SCREEN_WIDTH * 0.35)
+    self.time = 20
+end
+
+function CURWAVE:onEnd(death)
+    if not death and self._original_soul then
+        Game.battle:swapSoul(self._original_soul)
+        self._original_soul = nil
+    end
+end
+
+function CURWAVE:onStart()
+    self._original_soul = Game.battle.soul
+    local standard_soul = Soul()
+    Game.battle:swapSoul(standard_soul)
+    -- Get the arena object
+    local arena = Game.battle.arena
+
+    -- local bullet = self:spawnBullet("tesco", arena_x + bullet_reach_factor * arena.width, arena_y,
+        -- self)
+    local ax, ay = Game.battle.arena:getCenter()
+    local card_holder = self:spawnBullet("t05_card/card_platform",
+    ax + (SCREEN_WIDTH/4), 
+    ay + (SCREEN_HEIGHT*0.7*0.5*0.9))
+end
+
+function CURWAVE:update()
+    super.update(self)
+end
+
+return CURWAVE

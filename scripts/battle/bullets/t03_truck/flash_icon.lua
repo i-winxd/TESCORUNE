@@ -31,7 +31,7 @@ function FlashIcon:onAdd(parent)
     self.timer:everyInstant(self.beep_interval, function() 
         self.timer:script(function(wait) 
             local cur_pitch = self.bpt[times_repeated + 1]
-            Assets.playSound("snd_mtt_prebomb", 0.5, (2 ^ (cur_pitch/12)))
+            Assets.playSound("snd_mtt_prebomb", 0.7, (2 ^ (cur_pitch/12)))
             self.alpha = self.ticking_alpha
             wait(self.held_length)
             self.alpha = 0

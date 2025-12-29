@@ -8,6 +8,7 @@ function Tesco:init()
 
     -- Battle music ("battle" is rude buster)
     -- self.music = "UNEXPECTEDITEM_02"
+    -- self.music = ""
     self.music = ""
     -- Enables the purple grid battle background
     self.background = true

@@ -8,7 +8,6 @@ function MttBomb:init(x, y)
     self:setScale(1, 1)
     self.destroy_on_hit = false
     self.remove_offscreen = false
-
 end
 
 function MttBomb:update()

@@ -2,13 +2,14 @@ local MttBombImpact, super = Class(Bullet)
 
 ---@param x number
 ---@param y number
-function MttBombImpact:init(x, y)
+function MttBombImpact:init(x, y, explosion_iframes)
     -- Last argument = sprite path
     super.init(self, x, y)
     self:setScale(1, 1)
     self.gap = 24
     self.spread = 40
     self.remove_offscreen = false
+    self.explosion_iframes =  explosion_iframes or 4/3
 
 end
 
@@ -34,7 +35,7 @@ end
 ---@param rot number
 function MttBombImpact:spawnImpactPart(x, y, rot)
     -- print("Myself that is ", self)
-    self.wave:spawnBullet("mtt_bomb/mtt_bomb_impact_part", x, y, rot)
+    self.wave:spawnBullet("mtt_bomb/mtt_bomb_impact_part", x, y, rot, self.explosion_iframes)
 end
 
 function MttBombImpact:update()

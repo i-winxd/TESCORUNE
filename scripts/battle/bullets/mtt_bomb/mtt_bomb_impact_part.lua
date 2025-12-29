@@ -5,7 +5,7 @@ local BombExplodePart, super = Class(Bullet)
 ---@param x number spawn it centered here
 ---@param y number spawn it centered here
 ---@param rot? number in degrees
-function BombExplodePart:init(x, y, rot)
+function BombExplodePart:init(x, y, rot, explosion_iframes)
     rot = rot or 0
     -- Last argument = sprite path
     -- self:setSprite(texture, 0.25, true)
@@ -21,7 +21,7 @@ function BombExplodePart:init(x, y, rot)
     self.rotation = math.rad(rot)
     self.collider = Hitbox(self, self.width/4, 0, self.width/2, self.height)
     self.remove_offscreen = false
-
+    self.inv_timer = explosion_iframes or 4/3
 
 end
 

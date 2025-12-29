@@ -12,6 +12,16 @@ function T03Truck:init()
     self.arena_y = SCREEN_HEIGHT * 0.7 * 0.5
     self.timer = Timer()
     self:addChild(self.timer)
+    self.trucks_spawned = 0
+
+
+    self.truck_spawning_sequence = {
+
+
+
+    }
+
+
 end
 
 function T03Truck:onEnd(death)
@@ -42,6 +52,25 @@ local function rander(a, b, c)
         end
         return n
     end
+end
+function T03Truck:psRander(a, b, c)
+    -- from a to b rounded to nearest c
+    local sequence_number = self.trucks_spawned
+    local rdn
+    if sequence_number % 5 == 3 then
+        local tmp = rander(1, 2, 1)
+        if tmp >= 1.5 then
+            rdn = a
+        else
+            rdn = b
+        end
+    else 
+        rdn = rander(a,b,c)
+    end
+
+
+    self.trucks_spawned = self.trucks_spawned + 1
+    return rdn
 end
 
 function T03Truck:onStart()
@@ -141,7 +170,7 @@ function T03Truck:onStart()
     local minimum_truck_spawn = 0.75
 
     local truck_spawner = function() 
-        local position = rander(1, lanes, 1)
+        local position = self:psRander(1, lanes, 1)
         local face_right_bool = rander(0, 1)
         local face_right = false
         if face_right_bool > 0.5 then

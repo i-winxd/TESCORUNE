@@ -28,6 +28,10 @@ function Tesco:init()
         "bag_attack",
         "karts",
         "top_kart",
+        "t01_moving_solid",
+        "t02_inward_item",
+        "t03_truck",
+        "tesco2"
         -- "basic"
     }
 
