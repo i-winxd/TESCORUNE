@@ -10,6 +10,7 @@ function CURWAVE:init()
     self.arena_y = (SCREEN_HEIGHT*0.7*0.375)
     self.arena_width = (SCREEN_WIDTH * 0.35)
     self.time = 20
+
 end
 
 function CURWAVE:onEnd(death)
@@ -32,6 +33,8 @@ function CURWAVE:onStart()
     local card_holder = self:spawnBullet("t05_card/card_platform",
     ax + (SCREEN_WIDTH/4), 
     ay + (SCREEN_HEIGHT*0.7*0.5*0.9))
+
+
 end
 
 function CURWAVE:update()

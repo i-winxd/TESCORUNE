@@ -9,6 +9,7 @@ function CardPlatform:init(x, y)
     -- Move the bullet in dir radians (0 = right, pi = left, clockwise rotation)
     -- Speed the bullet moves (pixels per frame at 30FPS)
     self.draw_children_below = 0
+
 end
 
 function CardPlatform:onAdd(parent)

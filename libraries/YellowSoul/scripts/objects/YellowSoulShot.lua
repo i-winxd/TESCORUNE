@@ -41,7 +41,7 @@ function Shot:update()
     for _,bullet in ipairs(bullets) do
         if self:collidesWith(bullet) then
             self.hit_bullets[bullet] = true
-            local result, result_big = bullet:onYellowShot(self.damage)
+            local result, result_big = bullet:onYellowShot(self.damage, tostring(self))
             local real_result
             if self.big then
                 real_result = result_big

@@ -28,10 +28,10 @@ end
 
 ---@param x number
 ---@param y number
-function TescoBullet:init(x, y, wave)
+function TescoBullet:init(x, y, muted)
     -- Last argument = sprite path
     super.init(self, x, y, "bullets/tesco_sprite_aa")
-
+    self.muted = muted
     -- Move the bullet in dir radians (0 = right, pi = left, clockwise rotation)
     -- self.physics.direction = dir
     -- Speed the bullet moves (pixels per frame at 30FPS)
@@ -47,6 +47,7 @@ function TescoBullet:init(x, y, wave)
 end
 
 function TescoBullet:onAdd()
+    local muted = self.muted
     local arena = Game.battle.arena
     local bullet_reach_factor = 2
     local cur_deg = 0
@@ -69,15 +70,20 @@ function TescoBullet:onAdd()
             local angle_rad = math.rad(selected_deg)
             local final_x = arena.x + math.cos(angle_rad) * reach * 1.2
             local final_y = arena.y + math.sin(angle_rad) * reach * 0.8
+            local pitch_table = {0, 0}
+            if self.muted then 
+                pitch_table = {nil, nil}
+            end
             if self.wave ~= nil then
-                self.wave:spawnBullet("tesco_warning", final_x, final_y, angle_rad)
+                self.wave:spawnBullet("tesco_warning", final_x, final_y, angle_rad, pitch_table)
             end
             wait(0.25)
 
             local tesco_sounds = { "tesco/tesco_bagging", "tesco/tesco_item", "tesco/tesco_unexpected" };
             local sound_choice = rander(1, #tesco_sounds, 1)
-            Assets.playSound(tesco_sounds[sound_choice], 1)
-
+            if not self.muted then
+                Assets.playSound(tesco_sounds[sound_choice], 1)
+            end
             self.timer:tween(0.5, self, { x = final_x, y = final_y, rotation = angle_rad },
                 "out-quint")
             -- wait(0.6)

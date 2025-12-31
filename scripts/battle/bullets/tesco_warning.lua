@@ -27,7 +27,9 @@ function TescoWarningBullet:onAdd(parent)
     self.timer:everyInstant(0.14, function() 
         self.timer:script(function(wait) 
             local cur_pitch = self.bpt[times_repeated + 1]
-            Assets.playSound("snd_mtt_prebomb", 0.7, (2 ^ (cur_pitch/12)))
+            if cur_pitch ~= nil then 
+                Assets.playSound("snd_mtt_prebomb", 0.7, (2 ^ (cur_pitch/12)))
+            end
             self.alpha = 0.6
             wait(self.held_length)
             self.alpha = 0

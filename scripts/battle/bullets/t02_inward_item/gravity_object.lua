@@ -27,7 +27,7 @@ function GravityObject:update()
     if self.rot_vel ~= 0 then
         self.rotation = self.rotation + (self.rot_vel * DT)
     end
-    if self.y > SCREEN_HEIGHT + 10 then
+    if self.y > SCREEN_HEIGHT + 100 then
         self:remove()
     end
     super.update(self)

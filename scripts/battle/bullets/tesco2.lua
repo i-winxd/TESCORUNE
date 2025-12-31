@@ -31,7 +31,7 @@ end
 
 ---@param x number
 ---@param y number
-function TescoBullet2:init(x, y, wave)
+function TescoBullet2:init(x, y, movements, gap_mult)
     -- Last argument = sprite path
     super.init(self, x, y, "bullets/tesco_sprite_aa")
 
@@ -45,6 +45,8 @@ function TescoBullet2:init(x, y, wave)
     self.cur_deg = 0
     self.timer = Timer()
     self:addChild(self.timer)
+    self.movements = movements or 3
+    self.gap_mult = gap_mult or 1
 
     -- self.wave:spawnBullet("pound_symbol", 0, 0, 0, 6);
 end
@@ -82,12 +84,12 @@ function TescoBullet2:onAdd()
     local move_actual_gap = 0.4
     local post_gap = 0.4
 
-    local movements = 3
+    local movements = self.movements
     local time_between_loops = (move_gap + move_actual_gap) * movements + between_gap + post_gap
     local tesco_sounds = { "tesco/tesco_bagging", "tesco/tesco_item", "tesco/tesco_unexpected" };
     self.timer:script(function(waait)
-        waait(pre_gap) 
-        self.timer:everyInstant(time_between_loops, function () 
+        waait(pre_gap*self.gap_mult) 
+        self.timer:everyInstant(time_between_loops*self.gap_mult, function () 
             self.timer:script(function(wait)
                 local movement_values = {}
                 local base_rotation = 0
@@ -108,17 +110,17 @@ function TescoBullet2:onAdd()
                         rotation_info.final_y,
                         rotation_info.angle_rad,
                         {i-1},
-                        0.25
+                        0.25*self.gap_mult
                     )
-                    wait(move_gap)
+                    wait(move_gap*self.gap_mult)
                 end
-                wait(between_gap)
+                wait(between_gap*self.gap_mult)
                 for i = 1, movements do
                     local new_rotation = movement_values[i]
                     local rotation_info = calculateTescoPosition(new_rotation, arena, bullet_reach_factor)
                     local sound_choice = rander(1, #tesco_sounds, 1)
                     Assets.playSound(tesco_sounds[sound_choice], 1)
-                    self.timer:tween(math.min(move_actual_gap, 0.4), self, { 
+                    self.timer:tween(math.min(move_actual_gap, 0.4)*self.gap_mult, self, { 
                         x = rotation_info.final_x,
                         y = rotation_info.final_y,
                         rotation = rotation_info.angle_rad 
@@ -127,7 +129,7 @@ function TescoBullet2:onAdd()
                         
                     end)
                     if i ~= movements then
-                        wait(move_actual_gap)
+                        wait(move_actual_gap*self.gap_mult)
                     end
                 end
                 self:spew(2, 40)

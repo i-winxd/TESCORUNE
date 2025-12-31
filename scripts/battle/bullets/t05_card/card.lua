@@ -59,6 +59,7 @@ function BulletCard:init(ix, iy, x, y)
     self:setLayer(-1)
     self.timer = Timer()
     self:addChild(self.timer)
+
 end
 
 
@@ -81,8 +82,8 @@ function BulletCard:onAdd(parent)
     local std_min_dur = 0.17
     local b = 40
     local max_b = 70
-    
-    local called_count = 1
+    local seed = rander(0, 5, 1)
+    local called_count = 1 + seed * 4219
     local on_bounce = function() 
         Game.battle:shakeCamera(3)
         local cx, cy = self:localToScreenPos(self.x, self.y)
@@ -111,8 +112,9 @@ function BulletCard:onAdd(parent)
                 end
 
                 local spawned_bullet = self.wave:spawnBullet("t02_inward_item/gravity_object", 
-                cx, cy, final_angle, 7 + noise2, "bullets/pound_symbol", 0.15, rot_vel
+                cx, cy, final_angle, 7 + noise2, "bullets/pound_symbol", 0.15, (rot_vel)
                 )
+                -- spawned_bullet.damage = 20
                 spawned_bullet:setScale(1.35, 1.35)
                 spawned_bullet.remove_offscreen = true
             end
