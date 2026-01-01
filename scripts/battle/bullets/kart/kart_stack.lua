@@ -62,7 +62,9 @@ end
 
 ---@param x number
 ---@param y number
-function KartStack:init(x, y)
+function KartStack:init(x, y, spawn_p, kspeed)
+    self.spawn_p = spawn_p or 1
+    self.kspeed = kspeed or 1
     -- Last argument = sprite path
     super.init(self, x, y)
     self:setScale(1, 1)
@@ -91,31 +93,32 @@ function KartStack:onAdd()
     local bomb_top = rander(0, 1, 1) == 1
 
     for i = 1, no_items, 1 do
-        local item_height_offset = (i - 1) * item_height
-        if i == rand then
-            if bomb_top then
-                local bag = self:spawnVulnKart(0, 0 - item_height_offset, "bullets/tesco_icons/bag_of_area")
-                bag:setScale(1.4, 1.4)
+        if rander(0,1)<=self.spawn_p then
+            local item_height_offset = (i - 1) * item_height
+            if i == rand then
+                if bomb_top then
+                    local bag = self:spawnVulnKart(0, 0 - item_height_offset, "bullets/tesco_icons/bag_of_area")
+                    bag:setScale(1.4, 1.4)
+                else
+                    self:spawnBomb(0, 0 - item_height_offset)
+                end
+            elseif i == (rand + 1) then
+                if bomb_top then
+                    self:spawnBomb(0, 0 - item_height_offset)
+                else
+                    local bag = self:spawnVulnKart(0, 0 - item_height_offset, "bullets/tesco_icons/bag_of_area")
+                    bag:setScale(1.4, 1.4)
+                end
             else
-                self:spawnBomb(0, 0 - item_height_offset)
+                local texture = ""
+                if i == 1 then
+                    texture = "bullets/tesco_icons/shopping_cart"
+                else
+                    texture = self.kart_textures[rander(1, #self.kart_textures, 1)]
+                end
+                self:spawnBasicKart(0, 0 - item_height_offset, texture)
             end
-        elseif i == (rand + 1) then
-            if bomb_top then
-                self:spawnBomb(0, 0 - item_height_offset)
-            else
-                local bag = self:spawnVulnKart(0, 0 - item_height_offset, "bullets/tesco_icons/bag_of_area")
-                bag:setScale(1.4, 1.4)
-            end
-        else
-            local texture = ""
-            if i == 1 then
-                texture = "bullets/tesco_icons/shopping_cart"
-            else
-                texture = self.kart_textures[rander(1, #self.kart_textures, 1)]
-            end
-            self:spawnBasicKart(0, 0 - item_height_offset, texture)
         end
-
     end
 end
 
@@ -141,13 +144,14 @@ end
 
 function KartStack:update()
     -- For more complicated bullet behaviours, code here gets called every update
-    self.elapsed = self.elapsed + DT
+    self.elapsed = self.elapsed + DT*self.kspeed
     self.x = self:requiredXPos(self.elapsed)
     super.update(self)
 end
 
 ---@param t number
 function KartStack:requiredXPos(t)
+    t = t * self.kspeed
     local max_time = 4
     local completion = math.max(0, math.min(t /max_time, max_time))
     local progression = bezierEase(completion, 0.2, 0.37, 0.8, 0.59)

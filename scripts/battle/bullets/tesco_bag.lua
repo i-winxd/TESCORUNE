@@ -56,6 +56,13 @@ function TescoBag:init(x0, y0, x1, y1, x2, y2, d1, d2, d3)
     self.d1 = (d1 or 1)
     self.d2 = (d2 or 0)
     self.d3 = (d3 or 1)
+    self.intangible = false
+end
+
+function TescoBag:onCollide(soul)
+    if not self.intangible then 
+        super.onCollide(self, soul)
+    end
 end
 
 function TescoBag:onAdd()
@@ -83,9 +90,19 @@ function TescoBag:onAdd()
     )
 end
 
+
 function TescoBag:update()
     -- For more complicated bullet behaviours, code here gets called every update
     super.update(self)
 end
+
+
+
+function TescoBag:spawnBag(x0, y0, x1, y1, x2, y2, d1, d2, d3) 
+    local bagBullet = self:spawnBullet("tesco_bag", x0, y0, x1, y1, x2, y2, d1, d2, d3)
+    bagBullet.intangible = true
+    return bagBullet
+end
+
 
 return TescoBag

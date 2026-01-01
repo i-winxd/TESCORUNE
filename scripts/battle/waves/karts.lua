@@ -30,7 +30,7 @@ end
 ---@param x number
 ---@param y number
 function Karts:spawnKartStack(x, y)
-    return self:spawnBullet("kart/kart_stack", x, y)
+    return self:spawnBullet("kart/kart_stack", x, y, 1, 1)
     -- return self:spawnBullet("kart/moving_kart_stack", x, y)
 end
 --     local kart_stack = self:spawnKartStack(SCREEN_WIDTH, arena_y + 90)

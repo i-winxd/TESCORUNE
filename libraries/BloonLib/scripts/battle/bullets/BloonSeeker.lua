@@ -26,7 +26,7 @@ function BloonSeeker:init(x, y, bloon_type, health, recoil)
     super.init(self, x, y, bloon_type, health)
     local velo = self:getSpeed() / 4
     self.base_speed = velo
-    self.physics.speed = velo / 4
+    self.physics.speed = (velo / 4) * rander(0.85, 1.10)
     self.object_path = "BloonSeeker"
     self.recoil = recoil or 0
     self.timer = Timer()

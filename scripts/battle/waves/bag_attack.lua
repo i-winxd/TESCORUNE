@@ -35,6 +35,7 @@ function BagAttack:init()
     self.arena_x = (SCREEN_WIDTH * 0.4)
     self.arena_y = (SCREEN_HEIGHT - 155) / 2 + 10
     self.arena_height = SCREEN_HEIGHT * 0.35
+    
 end
 
 function BagAttack:onStart()
@@ -76,6 +77,7 @@ function BagAttack:onStart()
             end
         end)
     end
+
 
     
     -- 0.000 to 0.020 is about half

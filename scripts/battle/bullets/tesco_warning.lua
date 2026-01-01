@@ -24,7 +24,7 @@ end
 function TescoWarningBullet:onAdd(parent)
     local repeats = #(self.bpt)
     local times_repeated = 0
-    self.timer:everyInstant(0.14, function() 
+    self.timer:everyInstant(self.held_length * 2, function() 
         self.timer:script(function(wait) 
             local cur_pitch = self.bpt[times_repeated + 1]
             if cur_pitch ~= nil then 
@@ -45,6 +45,10 @@ function TescoWarningBullet:update()
     -- For more complicated bullet behaviours, code here gets called every update
 
     super.update(self)
+end
+
+function TescoWarningBullet:onCollide()
+    -- this bullet is always intangible
 end
 
 return TescoWarningBullet

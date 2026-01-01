@@ -64,4 +64,9 @@ function BLT:update()
     super.update(self)
 end
 
+
+function BLT:onCollide(soul)
+    -- grenades are intangible
+end
+
 return BLT
