@@ -88,7 +88,7 @@ function TescoBullet:onAdd()
                 "out-quint")
             -- wait(0.6)
             wait(0.45)
-            for i = 1, 4 do
+            for i = 1, 3 do
                 local me_x, me_y = self:getRelativePos(self.width / 2, self.height / 2)
                 -- Game.battle.soul.x
                 local rand_angle = math.rad(rander(-35, 35))
@@ -98,6 +98,13 @@ function TescoBullet:onAdd()
                 end
                 wait(0.05)
             end
+            local me_x, me_y = self:getRelativePos(self.width / 2, self.height / 2)
+            local rand_angle = math.rad(rander(-5, 5))
+
+            local angle_diff = Utils.angle(me_x, me_y, Game.battle.soul.x, Game.battle.soul.y)
+            if self.wave ~= nil then
+                self.wave:spawnBullet("pound_symbol", me_x, me_y, angle_diff + rand_angle, 7)
+            end  
 
         end)
         end)

@@ -2,29 +2,31 @@ local IntangibleTexture, super = Class(Bullet)
 
 ---@param x number
 ---@param y number
----@param scale number
----@param lifespan number
----@param texture string
-function IntangibleTexture:init(x, y, scale, lifespan, texture)
-    super.init(self, x, y, texture)
-    self:setScale(scale,scale)
+---@param radius number
+function IntangibleTexture:init(x, y, radius)
+    super.init(self, x, y)
+    self.radius = radius
     self.timer = Timer()
     self:addChild(self.timer)
-    self.lifespan = lifespan
     self.can_graze = false
 end
 
 function IntangibleTexture:onAdd()
-    self.timer:script(function(wait) 
-        wait(self.lifespan)
-        self:remove()
-    end)
+
 end
 
 function IntangibleTexture:onCollide(soul)
     -- do nothing since this texture is intangible
 end
 
+
+function IntangibleTexture:draw()
+    love.graphics.push("all")
+    Draw.setColor(1, 1, 1, 0.3)
+    love.graphics.circle("fill", 0, 0, self.radius)
+    Draw.setColor()
+    love.graphics.pop()
+end
 
 
 function IntangibleTexture:update()

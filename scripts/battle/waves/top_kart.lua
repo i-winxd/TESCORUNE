@@ -36,7 +36,20 @@ function TopKart:init()
 
 end
 
+function TopKart:onEnd(death)
+   if not death and self._original_soul then
+        Game.battle:swapSoul(self._original_soul)
+        self._original_soul = nil
+    end
+end
+
+
 function TopKart:onStart()
+    self._original_soul = Game.battle.soul
+    local standard_soul = YellowSoul()
+    Game.battle:swapSoul(standard_soul)
+    
+
     -- Get the arena object
     local arena = Game.battle.arena
     local x = SCREEN_WIDTH / 2

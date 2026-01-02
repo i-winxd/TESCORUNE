@@ -6,7 +6,7 @@ local ShotBullet, super = Class(Bullet, "YellowSoulBullet")
 function ShotBullet:init(x, y, texture)
     super.init(self, x, y, texture)
     self.shot_health = 1
-    self.shot_tp = 1
+    self.shot_tp = 0.4
 end
 
 --- Run this whenever the bullet health hits 0.

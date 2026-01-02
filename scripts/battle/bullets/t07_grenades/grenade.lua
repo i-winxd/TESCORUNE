@@ -45,6 +45,7 @@ function BLT:init(x, y, dir, speed, texture, gravity, rot_vel, fuse, frags, frag
 end
 
 function BLT:onAdd(parent)
+    Assets.playSound("snd_fall", 0.4)
     self.timer:script(function(wait) 
         wait(self.fuse)
         self.wave:spawnBullet("small_explosion", self.x, self.y, self.frags, self.frag_speed)

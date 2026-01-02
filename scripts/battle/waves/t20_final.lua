@@ -155,6 +155,7 @@ function CurWave:set_correct(num)
 end
 
 function CurWave:on_correct()
+    Assets.playSound("snd_coin", 0.8)
     local cooldown_period = 0.8
     if self.cooling_down then
         return
@@ -180,6 +181,7 @@ function CurWave:on_correct()
 end
 
 function CurWave:on_incorrect(num)
+    Assets.playSound("snd_buzzerwrong", 0.4)
     if num == 0 then 
         num = 10
     end
@@ -310,10 +312,7 @@ function CurWave:onEnd(death)
             attackers[i].attack = self.prev_damages[i]
         end
     end
-    if not death and self._original_soul then
-        Game.battle:swapSoul(self._original_soul)
-        self._original_soul = nil
-    end
+    super.onEnd(self,death)
 end
 
 
@@ -325,11 +324,6 @@ function CurWave:onStart()
         table.insert(self.prev_damages, attackers[i].attack)
         attackers[i].attack = attackers[i].attack / 2
     end
-
-
-    self._original_soul = Game.battle.soul
-    local standard_soul = Soul()
-    Game.battle:swapSoul(standard_soul)
 
     local arena = Game.battle.arena
     local ax, ay = Game.battle.arena:getCenter()

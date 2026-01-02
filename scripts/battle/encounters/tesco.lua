@@ -9,7 +9,7 @@ function Tesco:init()
     -- Battle music ("battle" is rude buster)
     -- self.music = "UNEXPECTEDITEM_02"
     -- self.music = ""
-    self.music = ""
+    self.music = "UNEXPECTEDITEM_02"
     -- Enables the purple grid battle background
     self.background = true
 
@@ -21,9 +21,9 @@ function Tesco:init()
 end
 
 
-function Tesco:createSoul(x, y, color)
-    -- return Soul(x, y, color)
-    return YellowSoul(x, y)
-end
+-- function Tesco:createSoul(x, y, color)
+--     -- return Soul(x, y, color)
+--     return YellowSoul(x, y)
+-- end
 
 return Tesco

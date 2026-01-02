@@ -42,7 +42,31 @@ local function rander(a, b, c)
         return n
     end
 end
+
+
+function CurWave:onEnd(death)
+    if not death and self._original_soul then
+        Game.battle:swapSoul(self._original_soul)
+        self._original_soul = nil
+    end
+end
+
+function CurWave:didCheat()
+    local cheatVar = Game.battle.encounter.funnycheat
+    if cheatVar == nil then 
+        return false
+    end
+    if cheatVar >= 1 then 
+        return true
+    end
+end
+
 function CurWave:onStart()
+
+    self._original_soul = Game.battle.soul
+    local standard_soul = YellowSoul()
+    Game.battle:swapSoul(standard_soul)
+
     local arena = Game.battle.arena
     local ax, ay = Game.battle.arena:getCenter()
     local ah = Game.battle.arena.height
@@ -151,8 +175,14 @@ function CurWave:onStart()
             local bw = bloon_waves[i]
             wait(bw.delay)
             self.timer:script(function (wait2) 
-                for j = 1, bw.count do 
-                    wait2(bw.spacing)
+                local count_val = bw.count
+                local spacing_val = bw.spacing
+                if self:didCheat() then 
+                    count_val = (count_val + 4) * 10
+                    spacing_val = spacing_val / 4
+                end
+                for j = 1, count_val do 
+                    wait2(spacing_val)
                     self:spawnBullet("BloonSeeker", SCREEN_WIDTH*1+20, get_spawn_y_pos(bw.center + rander(-0.5,0.5)*bw.spread), bw.bloon)
                 end
                 if i == #bloon_waves then 

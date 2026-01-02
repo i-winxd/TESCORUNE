@@ -15,17 +15,12 @@ function T02InwardItem:init()
 end
 
 function T02InwardItem:onEnd(death)
-    if not death and self._original_soul then
-        Game.battle:swapSoul(self._original_soul)
-        self._original_soul = nil
-    end
+    super.onEnd(self,death)
 end
 
 
 function T02InwardItem:onStart()
-    self._original_soul = Game.battle.soul
-    local standard_soul = Soul()
-    Game.battle:swapSoul(standard_soul)
+
 
     local ax, ay = Game.battle.arena:getCenter()
     local ah = Game.battle.arena.height

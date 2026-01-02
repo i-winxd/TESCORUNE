@@ -10,27 +10,16 @@ function TescoAttack2:init()
     self.time = 12
 end
 
-function TescoAttack2:onEnd(death)
-    if not death and self._original_soul then
-        Game.battle:swapSoul(self._original_soul)
-        self._original_soul = nil
-    end
-end
+
 
 function TescoAttack2:onStart()
 
-    self._original_soul = Game.battle.soul
-    local standard_soul = Soul()
-    Game.battle:swapSoul(standard_soul)
 
     -- Get the arena object
     local arena = Game.battle.arena
     -- local soul_x_pos = 60
     -- local soul_y_pos = 60
     -- local soul_loc, soul_loc_2 = Game.battle:getSoulLocation();
-    -- Game.battle:swapSoul(YellowSoul(320, 172, 0))
-    -- Kristal.Console:log(string.format("x:%d, y:%d", soul_loc, soul_loc_2));
-    -- Game.battle.swapSoul()
 
     local x = SCREEN_WIDTH / 2
     local y = SCREEN_HEIGHT / 2

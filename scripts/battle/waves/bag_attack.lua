@@ -29,7 +29,7 @@ end
 function BagAttack:init()
     super.init(self)
     -- how long the battle lasts in seconds
-    self.time = 7
+    self.time = 12
     self.timer = Timer()
     self:addChild(self.timer)
     self.arena_x = (SCREEN_WIDTH * 0.4)
@@ -38,7 +38,18 @@ function BagAttack:init()
     
 end
 
+function BagAttack:onEnd(death)
+    if not death and self._original_soul then
+        Game.battle:swapSoul(self._original_soul)
+        self._original_soul = nil
+    end
+end
+
 function BagAttack:onStart()
+    self._original_soul = Game.battle.soul
+    local standard_soul = YellowSoul()
+    Game.battle:swapSoul(standard_soul)
+
     -- Get the arena object
     local arena = Game.battle.arena
     local x = SCREEN_WIDTH / 2

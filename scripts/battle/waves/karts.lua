@@ -13,7 +13,16 @@ function Karts:init()
     self.arena_height = SCREEN_HEIGHT * 0.35
 end
 
+function Karts:onEnd(death)
+    super.onEnd(self,death)
+end
+
 function Karts:onStart()
+    self._original_soul = Game.battle.soul
+    local standard_soul = YellowSoul()
+    Game.battle:swapSoul(standard_soul)
+
+
     -- Get the arena object
     -- self:spawnBullet("mtt_bomb", arena_x + 160, arena_y)
     ---@type number[]

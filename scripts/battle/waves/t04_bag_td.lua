@@ -21,7 +21,21 @@ function BombTD:init()
     self.total_bombs = 9999
 end
 
+
+function BombTD:onEnd(death)
+    if not death and self._original_soul then
+        Game.battle:swapSoul(self._original_soul)
+        self._original_soul = nil
+    end
+end
+
 function BombTD:onStart()
+
+    self._original_soul = Game.battle.soul
+    local standard_soul = YellowSoul()
+    Game.battle:swapSoul(standard_soul)
+
+
     local ax, ay = Game.battle.arena:getCenter()
     local ah = Game.battle.arena.height
     local aw = Game.battle.arena.width

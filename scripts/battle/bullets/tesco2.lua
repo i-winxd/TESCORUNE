@@ -132,7 +132,8 @@ function TescoBullet2:onAdd()
                         wait(move_actual_gap*self.gap_mult)
                     end
                 end
-                self:spew(2, 40)
+                self:spew(1, 5)
+                self:spew(1, 40)
 
             end)
         end)

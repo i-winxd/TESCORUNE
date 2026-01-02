@@ -1,8 +1,8 @@
 {
     // The ID of your mod. Should be unique!!
-    "id": "idk____0401",
+    "id": "tescorune_dev",
     // Displays on the main menu.
-    "name": "idk    ",
+    "name": "TESCORUNE",
     // Displays underneath the name. Optional.
     "subtitle": "",
 
@@ -14,17 +14,17 @@
     // The Deltarune chapter you'd like to base your mod off of.
     // Do keep in mind that you can control chapter-specific features
     // one by one using the config below.
-    "chapter": 2,
+    "chapter": 4,
 
     // The map that you start in when first starting the mod.
     "map": "room1",
 
     // The party. The first character is the player.
-    "party": ["kris"],
+    "party": ["kris", "susie", "ralsei"],
 
     // The inventory. Contains three darkburgers, a cell phone and a shadow crystal by default.
     "inventory": {
-        "items": ["glowshard", "darkburger", "darkburger", "darkburger"],
+        "items": ["glowshard", "darkburger", "darkburger", "darkburger", "cd_bagel", "cd_bagel", "cd_bagel", "revivemint", "revivemint" ],
         "key_items": ["cell_phone", "shadowcrystal"]
     },
 
