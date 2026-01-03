@@ -87,8 +87,9 @@ function BLT:onCollide(soul)
     end
 end
 
-
-
+function BLT:setFinished()
+    self.finished = true
+end
 function BLT:triggerFling()
     self.moving = false
     local fling_base = 0.4

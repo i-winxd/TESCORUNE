@@ -21,6 +21,11 @@ function CurWave:init()
     self.last_finish = false
 
 end
+
+function CurWave:setFinished()
+    self.finished = true
+end
+
 local function rander(a, b, c)
     local function roundToMultiple(value, to)
         if to == 0 then

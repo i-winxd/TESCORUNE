@@ -9,8 +9,8 @@ function Tesco:init()
     self:setActor("tesco")
 
     -- Enemy health
-    self.max_health = 7100
-    self.health = 7100
+    self.max_health = 7300
+    self.health = 7300
     -- Enemy attack (determines bullet damage)
     self.attack = 7
     -- Enemy defense (usually 0)
@@ -62,7 +62,7 @@ function Tesco:init()
     -- self:registerAct("Tell Story", "", {"ralsei"})
     
     self:registerAct("Remove item", "+2% mercy")
-    self:registerAct("Remove all", "+7% mercy", {"susie", "ralsei"})
+    self:registerAct("Remove all", "+6.5% mercy", {"susie", "ralsei"})
     self:registerAct("Buy", "+Random\nitem", nil, 24)
     -- self:registerActFor
 
@@ -115,7 +115,7 @@ local p3 = {
     "t04_bomb_td",
     "t05_card_attack",
     "t06_scanner",
-    "t04_bag_td",
+    "tesco4",
     "top_kart",
 
 }
@@ -123,6 +123,7 @@ local p3 = {
 local p4 = {
     "t07_grenades",
     "t08_bloons",
+    "tesco4",
     "top_kart",
     "t05_card_attack",
     "t03_truck",
@@ -136,13 +137,14 @@ local p4a = 0
 function Tesco:getNextWaves()
     local progress = self:getProgress()
     if progress >= 0.90 and self.mega_attack_done ~= true then 
+        self.mega_attack_done = true
         return {"t20_final"}
     end
-    if progress <= 0.25 then 
+    if progress <= 0.27 then 
         local cat = {p1[p1a+1]}
         p1a = (p1a+1)%(#p1)
         return cat
-    elseif progress <= 0.50 then
+    elseif progress <= 0.56 then
         local cat = {p2[p2a+1]}
         p2a = (p2a+1)%(#p2)
         return cat
@@ -171,7 +173,7 @@ function Tesco:onAct(battler, name)
             "* " .. battler.chara.name .. " removed an item\nbefore continuing.",
         }
     elseif name == "Remove all" then 
-        self:addMercy(7)
+        self:addMercy(6.5)
         return {
             "* Everyone removed an item!"
         }

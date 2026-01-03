@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.11" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="16" height="12" tilewidth="40" tileheight="40" infinite="0" nextlayerid="6" nextobjectid="16">
+ <editorsettings>
+  <export target="tesco_map_2.lua" format="lua"/>
+ </editorsettings>
+ <tileset firstgid="1" source="../tilesets/tesco_room.tsx"/>
+ <tileset firstgid="65" source="../tilesets/castle.tsx"/>
+ <layer id="1" name="Tile Layer 1" width="16" height="12">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,87,87,87,87,87,87,87,87,87,87,87,87,0,0,
+0,0,87,87,87,87,87,87,87,87,87,87,87,87,0,0,
+0,0,87,87,87,87,87,87,87,87,87,87,87,87,0,0,
+0,0,87,87,87,87,87,87,87,87,87,87,87,87,0,0,
+0,0,87,87,87,87,87,87,87,87,87,87,87,87,0,0,
+0,0,87,87,87,87,87,87,87,87,87,87,87,87,0,0,
+0,0,87,87,87,87,87,87,87,87,87,87,87,87,0,0,
+0,0,0,0,0,0,87,87,87,87,0,0,0,0,0,0,
+0,0,0,0,0,0,87,87,87,87,0,0,0,0,0,0,
+0,0,0,0,0,0,87,87,87,87,0,0,0,0,0,0,
+0,0,0,0,0,0,87,87,87,87,0,0,0,0,0,0
+</data>
+ </layer>
+ <objectgroup id="3" name="markers">
+  <object id="3" name="spawn" x="320.249" y="341.82">
+   <point/>
+  </object>
+  <object id="13" name="entry" x="321.079" y="423.956">
+   <point/>
+  </object>
+ </objectgroup>
+ <objectgroup id="4" name="collision">
+  <object id="5" x="40" y="40" width="40" height="280"/>
+  <object id="6" x="80" y="320" width="160" height="40"/>
+  <object id="7" x="200" y="360" width="40" height="120"/>
+  <object id="8" x="400" y="320" width="40" height="160"/>
+  <object id="9" x="440" y="320" width="160" height="40"/>
+  <object id="10" x="560" y="0" width="40" height="320"/>
+  <object id="11" x="40" y="0" width="520" height="40"/>
+ </objectgroup>
+ <objectgroup id="5" name="objects">
+  <object id="12" name="enemy" x="299.419" y="188.245" width="40" height="40">
+   <properties>
+    <property name="actor" value="tesco"/>
+    <property name="encounter" value="tesco"/>
+   </properties>
+  </object>
+  <object id="15" name="transition" x="242.255" y="472.811" width="157.648" height="40.0151">
+   <properties>
+    <property name="map" value="tesco_map_1"/>
+    <property name="marker" value="entry"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

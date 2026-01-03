@@ -49,7 +49,7 @@ function BLT:onAdd(parent)
     self.timer:script(function(wait) 
         wait(self.fuse)
         self.wave:spawnBullet("small_explosion", self.x, self.y, self.frags, self.frag_speed)
-        Assets.playSound("snd_bomb", 0.6*rander(0.85,1), 2^(rander(-2, 2)/12))
+        Assets.playSound("snd_bomb", 0.8*rander(0.85,1), 2^(rander(-2, 2)/12))
         self:remove()
     end)
 end

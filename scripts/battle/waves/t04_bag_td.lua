@@ -29,6 +29,10 @@ function BombTD:onEnd(death)
     end
 end
 
+function BombTD:setFinished()
+    self.finished = true
+end
+
 function BombTD:onStart()
 
     self._original_soul = Game.battle.soul

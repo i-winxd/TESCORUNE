@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.11" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="16" height="12" tilewidth="40" tileheight="40" infinite="0" nextlayerid="5" nextobjectid="37">
+ <editorsettings>
+  <export target="tesco_map_1.lua" format="lua"/>
+ </editorsettings>
+ <tileset firstgid="1" source="../tilesets/tesco_room.tsx"/>
+ <tileset firstgid="65" source="../tilesets/castle.tsx"/>
+ <layer id="1" name="Tile Layer 1" width="16" height="12">
+  <data encoding="csv">
+0,0,28,28,28,28,4,0,0,0,2,28,28,28,0,0,
+0,0,28,28,28,28,4,0,0,0,2,28,28,28,0,0,
+0,0,28,28,28,28,12,29,29,29,10,9,9,9,0,0,
+0,0,33,33,33,33,6,29,29,29,6,6,6,14,0,0,
+0,0,33,33,33,33,29,41,41,41,29,43,43,8,0,0,
+0,0,35,35,35,35,29,29,29,29,29,29,29,8,0,0,
+0,0,5,29,29,29,29,42,42,42,29,41,41,8,0,0,
+0,0,5,33,33,29,29,29,29,29,29,29,29,8,0,0,
+0,0,5,33,33,29,29,29,29,29,29,29,29,8,0,0,
+0,0,16,7,7,7,29,29,29,29,7,7,7,15,0,0,
+0,0,0,0,0,0,5,29,29,8,0,0,0,0,0,0,
+0,0,0,0,0,0,5,29,29,8,0,0,0,0,0,0
+</data>
+ </layer>
+ <objectgroup color="#aa00ff" id="2" name="markers">
+  <object id="26" name="spawn" x="318.667" y="359.863">
+   <point/>
+  </object>
+  <object id="32" name="entry" x="340.477" y="79.3639">
+   <point/>
+  </object>
+ </objectgroup>
+ <objectgroup id="4" name="objects">
+  <object id="30" name="savepoint" x="441.037" y="319.265" width="40" height="40">
+   <properties>
+    <property name="text1">* Items loom over this
+very British-looking 
+Supermarket.</property>
+    <property name="text2">* The power of helping
+a little shines 
+within you.</property>
+   </properties>
+  </object>
+  <object id="31" name="transition" x="279.97" y="-21.2041" width="119.484" height="40.0151">
+   <properties>
+    <property name="map" value="tesco_map_2"/>
+    <property name="marker" value="entry"/>
+   </properties>
+  </object>
+  <object id="34" name="interactable" x="283.521" y="244.748" width="110.882" height="39.3942">
+   <properties>
+    <property name="cutscene" value="tesco_lobby.items"/>
+    <property name="once" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="36" name="interactable" x="80.871" y="203.855" width="162.378" height="38.7884">
+   <properties>
+    <property name="cutscene" value="tesco_lobby.water"/>
+    <property name="once" type="bool" value="false"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="3" name="Collisions">
+  <object id="6" x="80" y="400" width="160" height="40"/>
+  <object id="7" x="150.852" y="458.614"/>
+  <object id="8" x="40" y="240" width="40" height="160"/>
+  <object id="10" x="120" y="280" width="80" height="80"/>
+  <object id="11" x="80" y="200" width="160" height="40"/>
+  <object id="12" x="285" y="240" width="110" height="40"/>
+  <object id="13" x="445" y="240" width="70" height="40"/>
+  <object id="14" x="445" y="160" width="70" height="40"/>
+  <object id="15" x="285" y="160" width="110" height="40"/>
+  <object id="16" x="200" y="120" width="40" height="80"/>
+  <object id="17" x="200" y="440" width="40" height="40"/>
+  <object id="18" x="400" y="400" width="40" height="80"/>
+  <object id="19" x="440" y="400" width="120" height="40"/>
+  <object id="20" x="560" y="120" width="40" height="280"/>
+  <object id="21" x="400" y="80" width="160" height="40"/>
+  <object id="22" x="240" y="80" width="40" height="40"/>
+  <object id="23" x="240" y="0" width="40" height="80"/>
+  <object id="25" x="400" y="0" width="40" height="80"/>
+  <object id="33" x="241.113" y="471.927" width="159.955" height="14.5702"/>
+ </objectgroup>
+</map>

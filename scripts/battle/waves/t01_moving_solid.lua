@@ -122,6 +122,11 @@ end
 local bag_texture = "bullets/tesco_icons/bag_of_area"
 local exit_texture = "bullets/way_out_sign"
 
+
+function T01MovingSolid:setFinished()
+    self.finished = true
+end
+
 --- DO NOT HANDLE THE LOGIC THAT MOVES THE LIGHT
 function T01MovingSolid:onBagClaimed()
     Assets.playSound("snd_coin")

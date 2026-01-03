@@ -113,7 +113,9 @@ function CurWave:determine_blanks()
     return as_str
 end
 
-
+function CurWave:setFinished()
+    self.finished = true
+end
 function CurWave:set_correct(num)
     self.no_correct = num
     if self.no_correct == 3 then 
