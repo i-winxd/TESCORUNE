@@ -36,7 +36,17 @@ function Tesco:init()
     self.max_health = 7100
     self.health = 7100
     -- Enemy attack (determines bullet damage)
-    self.attack = 15
+
+    local cur_difficulty = Game:getFlag("boss_difficulty", "normal")
+    if cur_difficulty == "easy" then 
+        self.attack = 6
+    elseif cur_difficulty == "normal" then
+        self.attack = 15
+    elseif cur_difficulty == "hard" then
+        self.attack = 25
+    else
+        self.attack = 15
+    end
     -- Enemy defense (usually 0)
     self.defense = 0
     -- Enemy reward

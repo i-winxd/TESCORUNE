@@ -8,7 +8,17 @@ function Tesco:init()
 
     -- Battle music ("battle" is rude buster)
     -- self.music = "UNEXPECTEDITEM_02"
-    self.music = "BIGSHOT"
+    -- self.music = "BIGSHOT"
+    local obtained_music = Game:getFlag("song", "normal")
+    print(obtained_music)
+    if obtained_music == "normal" then
+        self.music = "BIGSHOT_FULL"
+    elseif obtained_music == "short" then
+        self.music = "BIGSHOT"
+    else
+        self.music = ""
+    end
+    print("ENCOUNTER HAS  BEEN INIT W/ SONG " .. obtained_music)
     -- self.music = "UNEXPECTEDITEM_02"
     -- Enables the purple grid battle background
     self.background = true
