@@ -74,7 +74,6 @@ function KartStack:init(x, y, spawn_p, kspeed)
         "bullets/tesco_icons/cereal_box",
         "bullets/tesco_icons/sandwich_icon",
         "bullets/tesco_icons/shop_box",
-        "bullets/tesco_icons/fihs",
         "bullets/tesco_icons/roundel",
         "bullets/tesco_icons/fries",
         "bullets/tesco_icons/tesco_beer"

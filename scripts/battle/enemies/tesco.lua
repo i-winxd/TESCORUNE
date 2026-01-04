@@ -21,6 +21,10 @@ local function rander(a, b, c)
     end
 end
 function Tesco:init()
+    self.p1a = 0
+    self.p2a = 0
+    self.p3a = 0
+    self.p4a = 0
     super.init(self)
 
     -- Enemy name
@@ -192,10 +196,6 @@ local function get_dialogue(wave_name)
     return wd
 end
 
-local p1a = 0
-local p2a = 0
-local p3a = 0
-local p4a = 0
 
 function Tesco:getXAction(battler)
     if battler.chara.id == "susie" or battler.chara.id == "ralsei" then
@@ -218,23 +218,23 @@ function Tesco:updateWave()
         return {"t20_final"}
     end
     if progress <= 0.26 then 
-        local cat = {p1[p1a+1]}
-        p1a = (p1a+1)%(#p1)
+        local cat = {p1[self.p1a+1]}
+        self.p1a = (self.p1a+1)%(#p1)
         self.dialogue_override = get_dialogue(cat[1])
         return cat
     elseif progress <= 0.54 then
-        local cat = {p2[p2a+1]}
-        p2a = (p2a+1)%(#p2)
+        local cat = {p2[self.p2a+1]}
+        self.p2a = (self.p2a+1)%(#p2)
         self.dialogue_override = get_dialogue(cat[1])
         return cat
     elseif progress <= 0.75 then
-        local cat = {p3[p3a+1]}
-        p3a = (p3a+1)%(#p3)
+        local cat = {p3[self.p3a+1]}
+        self.p3a = (self.p3a+1)%(#p3)
         self.dialogue_override = get_dialogue(cat[1])
         return cat
     else
-        local cat = {p4[p4a+1]}
-        p4a = (p4a+1)%(#p4)
+        local cat = {p4[self.p4a+1]}
+        self.p4a = (self.p4a+1)%(#p4)
         self.dialogue_override = get_dialogue(cat[1])
         return cat
     end

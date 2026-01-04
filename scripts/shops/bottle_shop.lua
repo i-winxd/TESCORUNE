@@ -12,7 +12,7 @@ function BottleShop:init()
     self.sell_text = "Return complete."
     self.buy_confirmation_text = "Please\nconfirm"
     self.buy_too_expensive_text = "Insufficient\nfunds"
-    self.shop_text = "Search for items"
+    self.shop_text = "* Welcome to the self-checkout"
     self.hide_world = false
     self.buy_refuse_text = "Consider our other items."
     self.buy_text = "Thank you for shopping at Tesco."
@@ -34,6 +34,26 @@ function BottleShop:init()
     self.talk_text = ""
     self.currency_text = "£ %d"
     self.background = "battle_bg/tesco_bg"
+
+    self:registerTalk("What should I do?")
+    -- self:registerTalk("Bug reports")
+end
+
+function BottleShop:startTalk(selection)
+    if selection == "What should I do?" then 
+        return self:startDialogue({
+            "* The boss is located in the second room. Access it by going up.",
+            "* You may rematch the boss as many times as you like after defeating it by leaving and re-entering the room.",
+            "* You may have noticed that the shelf in the center is a way to generate infinite money.",
+            "* Moreover, the coffee item increases the speed of the game. See how much you can chug down!",
+            "* If you are struggling, you can give yourself items in-battle by accessing the game's debug menu (SHIFT+BACKTICK(`))"
+        })
+    elseif selection == "Bug reports" then
+        return self:startDialogue({
+            "* Please report any issues in https://github.com/i-winxd/TESCORUNE."
+        })
+    end
+    return self:startDialogue({"You aren't supposed to see this."})
 end
 
 return BottleShop
