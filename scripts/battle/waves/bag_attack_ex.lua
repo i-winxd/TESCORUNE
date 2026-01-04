@@ -1,0 +1,146 @@
+local BagAttack, super = Class(Wave)
+
+--- Drop-in replacement to rander.
+--- Can't move files, must be compatible with the
+--- branch in september!
+local function rander(a, b, c)
+    local function roundToMultiple(value, to)
+        if to == 0 then
+            return 0
+        end
+
+        return math.floor((value + (to / 2)) / to) * to
+    end
+
+    if not a then
+        return love.math.random()
+    elseif not b then
+        return love.math.random() * a
+    else
+        local n = love.math.random() * (b - a) + a
+        if c then
+            n = roundToMultiple(n, c)
+        end
+        return n
+    end
+end
+
+
+function BagAttack:init()
+    super.init(self)
+    -- how long the battle lasts in seconds
+    self.time = 12
+    self.timer = Timer()
+    self:addChild(self.timer)
+    self.arena_x = (SCREEN_WIDTH * 0.4)
+    self.arena_y = (SCREEN_HEIGHT - 155) / 2 + 10
+    self.arena_height = SCREEN_HEIGHT * 0.35
+    
+end
+
+function BagAttack:onEnd(death)
+    if not death and self._original_soul then
+        Game.battle:swapSoul(self._original_soul)
+        self._original_soul = nil
+    end
+end
+
+function BagAttack:onStart()
+    self._original_soul = Game.battle.soul
+    local standard_soul = YellowSoul()
+    Game.battle:swapSoul(standard_soul)
+
+    -- Get the arena object
+    local arena = Game.battle.arena
+    local x = SCREEN_WIDTH / 2
+    local y = SCREEN_HEIGHT / 2
+    local w_oob = SCREEN_WIDTH * 1.15
+
+    local arena_x = arena.x
+    local arena_y = arena.y
+    --- % of height
+    ---@param pc number
+    local function htp(pc)
+        return SCREEN_HEIGHT * pc
+    end
+
+    local bullet_reach_factor = 2
+    -- x, y, rot, target_x, target_y, target_rot, wait_time, blast_time, play_sound
+    -- local bullet = self:spawnBullet("gaster_blaster", 0, 0, 180, x, y, 270, 0.5, 0.5, true)
+    -- local bullet2 = self:spawnBullet("gaster_blaster", arena_x, arena_y, -180, 0.5)
+    -- local bullet = self:spawnBullet("tesco", arena_x + bullet_reach_factor * arena.width, arena_y,
+        -- self)
+    -- self:spawnBag(w_oob, htp(0.5), arena_x, arena_y, w_oob, htp(0.5), 1, 0.2, 1)
+
+    -- bag_wave_spawn(w_oob, htp(0.5), arena_x, arena_y, 10, 5)
+    ---@param x0 number
+    ---@param y0 number
+    ---@param x1 number
+    ---@param y1 number
+    ---@param count number
+    ---@param gap number
+    local function spawn_bag_wave(x0, y0, x1, y1, count, gap, patience)
+        self.timer:script(function (wait)
+            local n = math.floor(count) - 1
+            for i = 0, n do
+                wait(0.15)
+                self:spawnBag(x0 + i * gap, y0, x1 + i * gap, y1, x0, y0, 2, patience, 1)
+            end
+        end)
+    end
+
+
+    
+    -- 0.000 to 0.020 is about half
+    local arena = Game.battle.arena
+    local times_called = 1
+    local st_wait_time = 1.0
+    local final_wait_time = 0.7
+    local max_times = 6
+    self.timer:script(function (wait) 
+        for i = 1, 999 do 
+            local pr = math.max(0, math.min(1,(i-1)/max_times))
+            local wt = st_wait_time*(1-pr)+pr*final_wait_time
+            wait(wt)
+            local pusher = 0
+            local actual_patience = 0.05 * (times_called - 1)
+            if times_called % 2 == 0 then
+                pusher = rander(0.0, 0.5)    
+            else
+                pusher = rander(-0.5, -0.0)
+            end
+            spawn_bag_wave(w_oob, 
+            arena_y + arena.height * (pusher * 0.5), arena_x + arena.width * 1,
+            arena_y + arena.height * pusher, 5, 10, actual_patience)
+
+            times_called = times_called + 1
+            end
+
+        end)
+
+end
+
+
+function BagAttack:spawnBag(x0, y0, x1, y1, x2, y2, d1, d2, d3) 
+    local bagBullet = self:spawnBullet("tesco_bag", x0, y0, x1, y1, x2, y2, d1, d2, d3)
+    return bagBullet
+end
+
+
+function BagAttack:update()
+
+
+
+    -- Increment timer for arena movement
+    -- self.siner = self.siner + DT
+
+    -- Calculate the arena Y offset
+    -- local offset = math.sin(self.siner * 1.5) * 60
+
+    -- Move the arena
+    -- Game.battle.arena:setPosition(self.arena_start_x, self.arena_start_y + offset)
+
+    super.update(self)
+end
+
+return BagAttack

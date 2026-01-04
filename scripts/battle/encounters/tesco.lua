@@ -8,7 +8,7 @@ function Tesco:init()
 
     -- Battle music ("battle" is rude buster)
     -- self.music = "UNEXPECTEDITEM_02"
-    self.music = ""
+    self.music = "BIGSHOT"
     -- self.music = "UNEXPECTEDITEM_02"
     -- Enables the purple grid battle background
     self.background = true
@@ -22,6 +22,15 @@ function Tesco:init()
     self.cur_frame_tracks_only = 0
     self.bg_speed = 1
 end
+
+function Tesco:getVictoryText(text, money, xp)
+    if Game.battle and Game.battle.used_violence then 
+        return super.getVictoryText(self, text, money, xp)
+    else
+        return "* Clubcard accepted. Thanks for shopping at Tesco."
+    end
+end
+
 
 local background_image = Assets.getTexture("battle_bg/tesco_panover_2") -- assets/sprites/battle_bg/tesco_bg.png"
 local track_image = Assets.getTexture("battle_bg/tracks_transparent")
@@ -71,7 +80,7 @@ function Tesco:drawBackground(fade)
     love.graphics.setColor(0, 0, 0, fade)
     love.graphics.rectangle("fill", 0, 80, SCREEN_WIDTH, SCREEN_HEIGHT)
     love.graphics.pop()
-    local x_offset = {0, 8, 8}
+    local x_offset = {2, 8, 8}
     for i = 1, 3 do
         local ty = base_track_y + (i - 1) * track_increase
 

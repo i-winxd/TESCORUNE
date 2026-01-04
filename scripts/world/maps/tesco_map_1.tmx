@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.11" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="16" height="12" tilewidth="40" tileheight="40" infinite="0" nextlayerid="5" nextobjectid="37">
+<map version="1.11" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="16" height="12" tilewidth="40" tileheight="40" infinite="0" nextlayerid="5" nextobjectid="38">
  <editorsettings>
   <export target="tesco_map_1.lua" format="lua"/>
  </editorsettings>
+ <properties>
+  <property name="name" value="Test Map - Room 1"/>
+ </properties>
  <tileset firstgid="1" source="../tilesets/tesco_room.tsx"/>
  <tileset firstgid="65" source="../tilesets/castle.tsx"/>
  <layer id="1" name="Tile Layer 1" width="16" height="12">
@@ -55,6 +58,12 @@ within you.</property>
   <object id="36" name="interactable" x="80.871" y="203.855" width="162.378" height="38.7884">
    <properties>
     <property name="cutscene" value="tesco_lobby.water"/>
+    <property name="once" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="37" name="interactable" x="115.311" y="277.606" width="87.878" height="83.7884">
+   <properties>
+    <property name="cutscene" value="tesco_lobby.checkout"/>
     <property name="once" type="bool" value="false"/>
    </properties>
   </object>

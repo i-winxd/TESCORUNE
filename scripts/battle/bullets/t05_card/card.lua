@@ -87,7 +87,7 @@ function BulletCard:onAdd(parent)
     local on_bounce = function() 
         Game.battle:shakeCamera(3)
         local cx, cy = self:localToScreenPos(self.x, self.y)
-        Assets.playSound("snd_impact", 1)
+        Assets.playSound("snd_impact", 0.8)
         -- x, y, dir, speed, texture, gravity, rot_vel
         local spread_list = {-75, -65, -60, -50, -45, -40, -20, -5, 30}
         local skip_chance = 0.6

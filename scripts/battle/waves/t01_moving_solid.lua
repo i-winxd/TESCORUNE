@@ -193,7 +193,7 @@ function T01MovingSolid:spawnNek()
             1.10-0.21,
             1.62-1.10,
             2.55-1.62,
-            3.25-2.55
+            3.23-2.55
         }
         Assets.playSound("nekta", 1.4)
         -- 0.21 NEK
@@ -216,7 +216,7 @@ function T01MovingSolid:spawnNek()
         self:unfreeze_all()
         nek:beginMove()
 
-        self.timer:tween(7, nek, {path_speed = 85}, "linear")
+        self.timer:tween(7, nek, {path_speed = 135}, "linear")
         
     end)
 end

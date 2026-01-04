@@ -70,7 +70,7 @@ function CURWAVE:onStart()
         "bullets/tesco_icons/tesco_beer",
     }
 
-    local rain_interval = 0.5
+    local rain_interval = 0.3
     local rain_bullets_here = 10
     local bullets_spawned = 1
     self.timer:every(rain_interval, function()

@@ -21,6 +21,7 @@ function BLT:init(path_obj)
     self.path_obj = path_obj
     self.path_obj.on_finish = function() 
         self.moving = false
+        self:triggerFling()
     end
     super.init(self, cx, cy, base_texture)
     -- the moving phase where it follows the path as stated
@@ -91,6 +92,9 @@ function BLT:setFinished()
     self.finished = true
 end
 function BLT:triggerFling()
+    if Game.battle.soul then
+        Game.battle.soul.inv_timer = 0
+    end
     self.moving = false
     local fling_base = 0.4
     local fling_final = 0.15

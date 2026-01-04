@@ -10,8 +10,10 @@ return {
   tilewidth = 40,
   tileheight = 40,
   nextlayerid = 5,
-  nextobjectid = 37,
-  properties = {},
+  nextobjectid = 38,
+  properties = {
+    ["name"] = "Tesco - Room 1"
+  },
   tilesets = {
     {
       name = "tesco_room",
@@ -175,6 +177,22 @@ return {
           visible = true,
           properties = {
             ["cutscene"] = "tesco_lobby.water",
+            ["once"] = false
+          }
+        },
+        {
+          id = 37,
+          name = "interactable",
+          type = "",
+          shape = "rectangle",
+          x = 115.311,
+          y = 277.606,
+          width = 87.878,
+          height = 83.7884,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["cutscene"] = "tesco_lobby.checkout",
             ["once"] = false
           }
         }

@@ -1,20 +1,20 @@
 {
     // The ID of your mod. Should be unique!!
-    "id": "tescorune_dev",
+    "id": "tescorune",
     // Displays on the main menu.
     "name": "TESCORUNE",
     // Displays underneath the name. Optional.
-    "subtitle": "",
+    "subtitle": "by i-win",
 
     // The version of your mod.
-    "version": "v1.0.0",
+    "version": "v1.0.0 (by i-win)",
     // What version of the engine your mod was made with.
     "engineVer": "v0.10.0-dev",
 
     // The Deltarune chapter you'd like to base your mod off of.
     // Do keep in mind that you can control chapter-specific features
     // one by one using the config below.
-    "chapter": 4,
+    "chapter": 5,
 
     // The map that you start in when first starting the mod.
     "map": "tesco_map_1",
@@ -24,8 +24,20 @@
 
     // The inventory. Contains three darkburgers, a cell phone and a shadow crystal by default.
     "inventory": {
-        "items": ["glowshard", "darkburger", "darkburger", "darkburger", "cd_bagel", "cd_bagel", "cd_bagel", "revivemint", "revivemint" ],
-        "key_items": ["cell_phone", "shadowcrystal"]
+        "items": [
+                  "salted_block_butter",
+                  "revivemint",
+                  "medium_sliced_bread",
+                  "medium_sliced_bread", 
+                  "igaku", 
+                  "igaku", 
+                  "ham_cheddar_sandwich", 
+                  "ham_cheddar_sandwich", 
+                  "ham_cheddar_sandwich", 
+                  "finest_steak", 
+                  "coffee", 
+                  "coffee" ],
+        "key_items": ["cell_phone"]
     },
 
     // Equipment for your party. Not specifying equipment defaults to the following.
@@ -61,7 +73,10 @@
     // These config values can control chapter-specific features as well.
     "config": {
         "kristal": {
-            // End of config
+            "darkCurrency": "Quid",
+            "darkCurrencyShort": "£"
+            // End of config £
         }
+
     }
 }

@@ -1,8 +1,19 @@
-# Kristal's current commit hash for this is:
+# TESCORUNE
 
-`bbda70bc1469f8cd6e1d8a5b79350024865cb3e7`
+**HOW TO PLAY**: If a field says *TBA* it means I didn't add it yet.
 
-## Getting this to work
+- You can play this mod in your browser using this link: TBA
+
+You can also load this into Kristal if you have Kristal installed.
+Alternatively, I can provide a pre-compiled executable: TBA
+
+
+**VERSION COMPATABILITY:**
+
+This works for the version of Kristal's main branch 
+committed around Dec. 12 and around Sept. 7th.
+
+## Setting the development environment
 
 In `.vscode/settings.json`, paste this
 
@@ -31,18 +42,9 @@ In `.vscode/settings.json`, paste this
 }
 ```
 
-## Kristal notes
+## Issues
 
-The way modules are handled is probably not in the best way.
-You cannot really have other helper methods without making them global, so oh well,
-prepare for your namespace to be the worst it could be.
+You are welcome to open issues if you encounter any issues playing this.
+Issues are not guaranteed to be addressed (this is just for expectations) although it depends.
 
-**When a module returns something, that the return value becomes global.**
-
-That's it. No further elaboration.
-
-Also if your mod breaks:
-
-- `super` must never use `:` since it's not `super(super)`
-- Certain methods must not be used in an init function
-- other stuff
+Pull requests that count as modifying content (apart from just bugfixes) are unlikely to be accepted.
