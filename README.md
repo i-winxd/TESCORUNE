@@ -7,7 +7,7 @@ This is a Kristal mod that runs on the [Kristal](https://kristal.cc/) engine.
 **HOW TO PLAY**:
 
 - **BROWSER/WEB LINK (No downloads)**:
-  - Direct "WASM" playable build: [tesco.i-win.cc](https://tesco.i-win.cc)
+  - Direct "WASM" playable build: [tesco.i-win.cc](https://tesco.i-win.cc) or [mirror if the link on the left doesn't work](https://tescorune.pages.dev/)
   - Page that has a button that redirects to the link above: https://i-win.cc/tesco
   - If this page doesn't load, your router might be blocking the page. In this case you'll have to download it.
   - Mobile is supported, but it might be hard to control and the game might lag. Controller hitboxes may not be what they seem. For example, if you are playing vertically, the Z hitbox is outside the game frame, near the bottom of your screen, in the same horizontal point. **The game MAY break at any time on mobile. Please do not click on any option that may fullscreen the game or change its resolution.** Audio will be compressed. **Mobile users: if the controls become unresponsive rotate your device and rotate it back.** There are options to change the difficulty by interacting with the **top right** set of boxes in the lobby (the empty ones).
