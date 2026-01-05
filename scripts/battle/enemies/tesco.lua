@@ -98,7 +98,7 @@ function Tesco:init()
     -- self:registerAct("Tell Story", "", {"ralsei"})
     
     self:registerAct("Remove item", "+2% mercy")
-    self:registerAct("Remove all", "+6.5%\nmercy", {"susie", "ralsei"})
+    self:registerAct("Remove all", "+7%\nmercy", {"susie", "ralsei"})
     self:registerAct("Meal Deal", "Rdm party\nmember +HP", nil, 45)
     self:registerAct("Work overtime", "Undos\ncoffee", nil, 95)
 
@@ -296,7 +296,7 @@ function Tesco:onAct(battler, name)
             "* " .. battler.chara.name .. " removed an item\nbefore continuing.",
         }
     elseif name == "Remove all" then 
-        self:addMercy(6.5)
+        self:addMercy(7)
         return {
             "* Everyone removed an item!"
         }
