@@ -22,8 +22,7 @@ This is a Kristal mod that runs on the [Kristal](https://kristal.cc/) engine.
     - Extract the repository and put it in the mods folder. Basically, I should see something like `.../AppData/Roaming/kristal/mods/TESCORUNE` at the end, where peeping in `.../AppData/Roaming/kristal/mods/TESCORUNE/README.md` should be there.
     ![What you should see](https://i.imgur.com/fCbQkfu.png)
     ![What you should see again](https://i.imgur.com/L2hs5i2.png)
-    - Press `CTRL+R`, go to "Play a mod" and TESCORUNE should be there.
-    - 
+    - **Back in the engine:** Press `CTRL+R`, go to "Play a mod" and TESCORUNE should be there.
 
 
 
