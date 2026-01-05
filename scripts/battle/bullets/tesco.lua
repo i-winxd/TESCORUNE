@@ -39,13 +39,30 @@ function TescoBullet:init(x, y, muted)
     self.destroy_on_hit = false
     self.scale_x = 1.4
     self.scale_y = 1.4
+    local hitbox_mult = 0.45
+    self.collider = Hitbox(self, self.width*((1-hitbox_mult)/2), self.height*((1-hitbox_mult)/2), self.width*hitbox_mult, self.height*hitbox_mult)
 
     self.timer = Timer()
     self:addChild(self.timer)
 
     -- self.wave:spawnBullet("pound_symbol", 0, 0, 0, 6);
 end
+local function linspace(N, a, b)
+    local result = {}
 
+    if N == 1 then
+        result[1] = a
+        return result
+    end
+
+    local step = (b - a) / (N - 1)
+
+    for i = 0, N - 1 do
+        result[i + 1] = a + i * step
+    end
+
+    return result
+end
 function TescoBullet:onAdd()
     local muted = self.muted
     local arena = Game.battle.arena
@@ -77,7 +94,7 @@ function TescoBullet:onAdd()
             if self.wave ~= nil then
                 self.wave:spawnBullet("tesco_warning", final_x, final_y, angle_rad, pitch_table)
             end
-            wait(0.25)
+            wait(0.55)
 
             local tesco_sounds = { "tesco/tesco_bagging", "tesco/tesco_item", "tesco/tesco_unexpected" };
             local sound_choice = rander(1, #tesco_sounds, 1)
@@ -88,10 +105,12 @@ function TescoBullet:onAdd()
                 "out-quint")
             -- wait(0.6)
             wait(0.45)
+            local linspace_res = linspace(3, -25, 35)
             for i = 1, 3 do
                 local me_x, me_y = self:getRelativePos(self.width / 2, self.height / 2)
                 -- Game.battle.soul.x
-                local rand_angle = math.rad(rander(-35, 35))
+                -- local rand_angle = math.rad(rander(-15, 15))
+                local rand_angle = math.rad(linspace_res[i]) + math.rad(rander(-6, 6))
                 local angle_diff = Utils.angle(me_x, me_y, Game.battle.soul.x, Game.battle.soul.y)
                 if self.wave ~= nil then
                     self.wave:spawnBullet("pound_symbol", me_x, me_y, angle_diff + rand_angle, 7)
@@ -99,7 +118,7 @@ function TescoBullet:onAdd()
                 wait(0.05)
             end
             local me_x, me_y = self:getRelativePos(self.width / 2, self.height / 2)
-            local rand_angle = math.rad(rander(-5, 5))
+            local rand_angle = math.rad(rander(-7, 7))
 
             local angle_diff = Utils.angle(me_x, me_y, Game.battle.soul.x, Game.battle.soul.y)
             if self.wave ~= nil then

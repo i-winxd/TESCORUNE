@@ -8,10 +8,24 @@ This is a Kristal mod that runs on the [Kristal](https://kristal.cc/) engine.
 
 - **BROWSER/WEB LINK (No downloads)**:
   - Direct "WASM" playable build: [tesco.i-win.cc](https://tesco.i-win.cc)
-  - Page that has a button that redirects to the link above, which is better to share to avoid mobile user griveances: https://i-win.cc/tesco
+  - Page that has a button that redirects to the link above: https://i-win.cc/tesco
+  - If this page doesn't load, your router might be blocking the page. In this case you'll have to download it.
   - Mobile is supported, but it might be hard to control and the game might lag. Controller hitboxes may not be what they seem. For example, if you are playing vertically, the Z hitbox is outside the game frame, near the bottom of your screen, in the same horizontal point. **The game MAY break at any time on mobile. Please do not click on any option that may fullscreen the game or change its resolution.** Audio will be compressed.
-- **AS AN EXECUTABLE DOWNLOAD**: TBA. Usually better performance, audio is not compressed so file size will be larger. Be careful about doing this and putting this repository in the mods folder since this results in mod ID conflicts.
-- YOU HAVE AN EXISTING KRISTAL INSTANCE: Download this repository as a ZIP, unzip it to where you would put your Kristal mods. This is compatible with the version of Kristal committed between July 2025 and has been tested for the commit at December 12, 2025. However, since Kristal might not be very future-proof, the web or executable downloads might be better. Kristal, as of 1/4/2026, does not support running on the web or mobile touch controls without modifying the code, which are features I had to implement myself.
+- **ON YOUR COMPUTER**:
+    - Download Kristal here: [Kristal Nightly Releases](https://kristal.cc/wiki/downloading#nightly-releases). Note that this is the nightly release and could break any time in the future. If that breaks, I've uploaded a mirror of a version that is guaranteed to work with my mod: [KRISTAL 1/4/2026 MIRROR](https://files.catbox.moe/dfv4wc.zip) (sorry Aussies but this link won't work for you). 
+    - Extract `...-dev-win.zip`. Your files should be in the same directory. You should be able to see this:
+    ![Downloaded Kristal](https://i.imgur.com/G2KguR6.png)
+    - Run the Kristal executable once on your computer.
+    - In Kristal, click "open mods folder".
+    - Download this repository.
+    ![Click to download](https://i.imgur.com/5SWJqT9.png)
+    - Extract the repository and put it in the mods folder. Basically, I should see something like `.../AppData/Roaming/kristal/mods/TESCORUNE` at the end, where peeping in `.../AppData/Roaming/kristal/mods/TESCORUNE/README.md` should be there.
+    ![What you should see](https://i.imgur.com/fCbQkfu.png)
+    ![What you should see again](https://i.imgur.com/L2hs5i2.png)
+    - Press `CTRL+R`, go to "Play a mod" and TESCORUNE should be there.
+    - 
+
+
 
 **VERSION COMPATABILITY**
 
@@ -36,6 +50,15 @@ Challenges:
 
 - No hit the boss, or play on a harder difficulty.
 - Finish the boss after consuming two `Instant Coffee` items at the start of the battle, effectively making all bullets spawn and move twice as fast.
+- Yes, using the Yellow Soul funny cheat (spamming enter while holding Z) once during the fight will will change one attack for the rest of this encounter.
+
+<details>
+<summary>
+    What happens if I spam big shots?
+</summary>
+
+    The bloons attack, which should be the last few attacks, spawns significantly more bloons.
+</details>
 
 ## Filing Bug Reports
 
@@ -55,7 +78,7 @@ If you record yourself playing this, you may credit using:
 
 - The link to this repository
 - The link to the playable web version
-- Any tweet, post, or video I make showcasing this
+- Any tweet, post, or video I make showcasing this with a link to this repository (not all platforms allow clickable links)
 - My social media pages
 
 If you got this mod anywhere but here, someone could've added malicious code to it.
