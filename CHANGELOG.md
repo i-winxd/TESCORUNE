@@ -25,3 +25,12 @@ Sorry if this number is unfortunate but this is the compromise. Trust me, people
 - Using the funny cheat (the one that enranges spamton) will now
 change the dialogue for one of the attacks.
 - increased pop sound volume
+
+# 1.0.4
+
+1:24PM EST 1/6/2016
+
+- Bag attack (usually the second attack in the game) will now have the enemy explain how to fire shots
+- Severely nerfed Tesco's hitbox for all Tesco attacks, making a lot harder to get hit by the logo
+- To cheat you now must cheat 20 times instead of 1 time since there are false positives
+- The dialogue that shows on cheating will now tell you how to cheat (ironically)

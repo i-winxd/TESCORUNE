@@ -176,7 +176,7 @@ local p4 = {
 
 local wave_dialogue = {
     tesco = "UNEXPECTED ITEM IN",
-    bag_attack = {"BAGGING AREA"},
+    bag_attack = {"BAGGING AREA", "PRESS Z TO FIRE", "HOLD Z TO CHARGE A [BIG SHOT]"},
     karts = "REMOVE THIS ITEM",
     top_kart = "BEFORE CONTINUING",
     t01_moving_solid = "BABEL",
@@ -199,9 +199,9 @@ local generic_dialogue = {
 
 local function get_dialogue(wave_name)
     -- print("Obtaining dialogue for " .. wave_name)
-    if Game.battle.encounter.funnycheat ~= nil and Game.battle.encounter.funnycheat >= 1 then 
+    if Game.battle.encounter.funnycheat ~= nil and Game.battle.encounter.funnycheat >= 20 then 
         if wave_name == 't08_bloons' then 
-            return {"CHEATER", "I AM FINING YOU 300000\nQUID FOR THIS"}
+            return {"CHEATER", "I AM FINING YOU 300000\nQUID FOR THIS", "[For reference, hold Z and\nspamENTER to cheat]"}
         end
     end
 

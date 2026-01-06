@@ -61,7 +61,7 @@ function CurWave:didCheat()
     if cheatVar == nil then 
         return false
     end
-    if cheatVar >= 1 then 
+    if cheatVar >= 20 then 
         return true
     end
     return false

@@ -39,7 +39,7 @@ function TescoBullet:init(x, y, muted)
     self.destroy_on_hit = false
     self.scale_x = 1.4
     self.scale_y = 1.4
-    local hitbox_mult = 0.45
+    local hitbox_mult = 0.25
     self.collider = Hitbox(self, self.width*((1-hitbox_mult)/2), self.height*((1-hitbox_mult)/2), self.width*hitbox_mult, self.height*hitbox_mult)
 
     self.timer = Timer()
