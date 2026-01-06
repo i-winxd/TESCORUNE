@@ -25,6 +25,7 @@ function Tesco:init()
     self.p2a = 0
     self.p3a = 0
     self.p4a = 0
+    self.mercies = 0
     super.init(self)
 
     -- Enemy name
@@ -98,7 +99,7 @@ function Tesco:init()
     -- self:registerAct("Tell Story", "", {"ralsei"})
     
     self:registerAct("Remove item", "+2% mercy")
-    self:registerAct("Remove all", "+7%\nmercy", {"susie", "ralsei"})
+    self:registerAct("Remove all", "Alternate\n+6 or 7%\nmercy", {"susie", "ralsei"})
     self:registerAct("Meal Deal", "Rdm party\nmember +HP", nil, 45)
     self:registerAct("Work overtime", "Undos\ncoffee", nil, 95)
 
@@ -285,6 +286,19 @@ function Tesco:onDefeat(damage, battler)
     self:defeat("VIOLENCED", true)
 end
 
+function Tesco:getRemoveAllMercy()
+    local merc = self.mercies
+    if merc == nil then 
+        merc = 0
+    end
+    local mta = 6
+    if merc % 2 == 1 then 
+        mta = 7
+    end
+    self.mercies = (merc + 1) % 2
+    return mta
+end
+
 function Tesco:onAct(battler, name)
     if name == "Remove item" then
         -- Give the enemy 100% mercy
@@ -296,7 +310,7 @@ function Tesco:onAct(battler, name)
             "* " .. battler.chara.name .. " removed an item\nbefore continuing.",
         }
     elseif name == "Remove all" then 
-        self:addMercy(7)
+        self:addMercy(self:getRemoveAllMercy())
         return {
             "* Everyone removed an item!"
         }

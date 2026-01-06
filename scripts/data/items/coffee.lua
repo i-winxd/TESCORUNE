@@ -59,7 +59,7 @@ function item:onBattleSelect(user, item)
 end
 
 function item:onBattleDeselect(user, item)
-    super.onBattleSelect(self, user, item)
+    super.onBattleDeselect(self, user, item)
     Game.battle.timescale = Game.battle.timescale - 0.4
 end
 
