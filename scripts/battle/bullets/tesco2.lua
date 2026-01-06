@@ -47,7 +47,7 @@ function TescoBullet2:init(x, y, movements, gap_mult)
     self:addChild(self.timer)
     self.movements = movements or 3
     self.gap_mult = gap_mult or 1
-    local hitbox_mult = 0.25
+    local hitbox_mult = 0.40
     self.collider = Hitbox(self, self.width*((1-hitbox_mult)/2), self.height*((1-hitbox_mult)/2), self.width*hitbox_mult, self.height*hitbox_mult)
 
 

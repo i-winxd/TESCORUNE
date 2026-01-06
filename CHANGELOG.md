@@ -28,9 +28,15 @@ change the dialogue for one of the attacks.
 
 # 1.0.4
 
-1:24PM EST 1/6/2016
+1:24PM EST 1/6/2026
 
 - Bag attack (usually the second attack in the game) will now have the enemy explain how to fire shots
 - Severely nerfed Tesco's hitbox for all Tesco attacks, making a lot harder to get hit by the logo
 - To cheat you now must cheat 20 times instead of 1 time since there are false positives
 - The dialogue that shows on cheating will now tell you how to cheat (ironically)
+
+# 1.0.5
+
+1:37 EST 1/6/2026
+
+- Rebalanced tesco "triple" attack to not make it too cheeseable

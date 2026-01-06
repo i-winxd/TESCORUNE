@@ -32,8 +32,9 @@ function TescoAttack2:onStart()
     -- x, y, rot, target_x, target_y, target_rot, wait_time, blast_time, play_sound
     -- local bullet = self:spawnBullet("gaster_blaster", 0, 0, 180, x, y, 270, 0.5, 0.5, true)
     -- local bullet2 = self:spawnBullet("gaster_blaster", arena_x, arena_y, -180, 0.5)
-    local bullet = self:spawnBullet("tesco2", arena_x + bullet_reach_factor * arena.width, arena_y
-        )
+    -- local bullet = self:spawnBullet("tesco2", arena_x + bullet_reach_factor * arena.width, arena_y)
+    local bullet = self:spawnBullet("tesco2", arena_x + bullet_reach_factor * arena.width, arena_y, 3, 1.3)
+
 end
 
 function TescoAttack2:update()
