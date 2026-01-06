@@ -64,6 +64,7 @@ function CurWave:didCheat()
     if cheatVar >= 1 then 
         return true
     end
+    return false
 end
 
 function CurWave:onStart()

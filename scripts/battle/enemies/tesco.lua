@@ -199,6 +199,13 @@ local generic_dialogue = {
 
 local function get_dialogue(wave_name)
     -- print("Obtaining dialogue for " .. wave_name)
+    if Game.battle.encounter.funnycheat ~= nil and Game.battle.encounter.funnycheat >= 1 then 
+        if wave_name == 't08_bloons' then 
+            return {"CHEATER", "I AM FINING YOU 300000\nQUID FOR THIS"}
+        end
+    end
+
+
     local wd = wave_dialogue[wave_name]
     if wd == nil then 
         local gd = generic_dialogue[rander(1, 3, 1)]

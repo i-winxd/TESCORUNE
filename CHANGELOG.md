@@ -17,3 +17,11 @@ This resolves any issues with the mercy meter being rounded up.
 - Fixed instant coffee giving infinite TP by selecting and deselecting it over and over again.
 
 Sorry if this number is unfortunate but this is the compromise. Trust me, people aren't finding 69 funny anymore?
+
+# 1.0.3
+
+7:18PM EST 1/5/2026
+
+- Using the funny cheat (the one that enranges spamton) will now
+change the dialogue for one of the attacks.
+- increased pop sound volume

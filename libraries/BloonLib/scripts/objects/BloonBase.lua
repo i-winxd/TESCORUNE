@@ -109,7 +109,7 @@ local function decide_spawns_local(cur_bloon, damage)
 
     local children_types = (children_map[cur_bloon.type]) or {}
     if #children_types == 0 then
-        print("Not in the children map")
+        -- print("Not in the children map")
         return {}
     end
     ---@type StoredBloon[]
@@ -276,7 +276,7 @@ function BloonBase:onDeplete()
         vol = 1*snd_mult
     else
         sfx = "bloon_pop"
-        vol = 0.34*snd_mult
+        vol = 0.37*snd_mult
     end
     vol = vol * rander(0.85, 1)
     self.wave:spawnBullet("intangible_texture", self.x, self.y, 2, 0.15, pop_textures[rander(1,#pop_textures,1)])
